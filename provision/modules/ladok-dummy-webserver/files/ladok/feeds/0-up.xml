@@ -1,0 +1,409 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title type="text">Events for Ladok3.Studentinformation</title>
+  <link rel="self" type="application/atom+xml" href="http://localhost/ladok/feeds/0-up.xml"/>
+  <link rel="next-archive" type="application/atom+xml" href="http://localhost/ladok/feeds/20-up.xml"/>
+  <id>urn:uuid:8d114f66-6806-4ed2-a2f4-d0e90e597ec5</id>
+  <generator uri="http://ladok3test.its.umu.se:8092/studentinformation/events">Studentinformation</generator>
+  <updated>2012-12-14T07:19:08Z</updated>
+  <entry>
+    <title type="text">Event #: 0</title>
+    <category term="se.ladok.commons.interfaces.events.StudentEtableradEvent"/>
+    <id>0cd7b07e-738d-4370-8843-869327acf2db</id>
+    <updated>2012-12-13T08:04:23Z</updated>
+    <content type="application/vnd.ladok+xml">
+      <base:StudentEtableradHandelse xmlns:base="http://schemas.ladok.se" xmlns:dap="http://schemas.ladok.se/dap">
+        <base:EventContext>
+          <base:LarosateID>-1</base:LarosateID>
+        </base:EventContext>
+        <base:Handelsetid>2012-12-13T09:04:23.445</base:Handelsetid>
+        <base:HandelseUID>0cd7b07e-738d-4370-8843-869327acf2db</base:HandelseUID>
+        <base:Efternamn>Tolvanson</base:Efternamn>
+        <base:Fornamn>Tolvan</base:Fornamn>
+        <base:Personnummer>191212121212</base:Personnummer>
+        <base:StudentUID>300656bf-9530-4549-92d0-1bab8dbe2ba9</base:StudentUID>
+        <base:StudentURI>https://ladok3test.its.umu.se:444/studentinformation/student/300656bf-9530-4549-92d0-1bab8dbe2ba9</base:StudentURI>
+      </base:StudentEtableradHandelse>
+    </content>
+  </entry>
+  <entry>
+    <title type="text">Event #: 1</title>
+    <category term="se.ladok.commons.interfaces.events.StudentEtableradEvent"/>
+    <id>62d620d3-db96-458f-80df-64e7dc0f3f7e</id>
+    <updated>2012-12-03T16:23:55Z</updated>
+    <content type="application/vnd.ladok+xml">
+      <base:StudentEtableradHandelse xmlns:base="http://schemas.ladok.se" xmlns:dap="http://schemas.ladok.se/dap">
+        <base:EventContext>
+          <base:LarosateID>-1</base:LarosateID>
+        </base:EventContext>
+        <base:Handelsetid>2012-12-03T17:23:55.042</base:Handelsetid>
+        <base:HandelseUID>62d620d3-db96-458f-80df-64e7dc0f3f7e</base:HandelseUID>
+        <base:Efternamn>Skov</base:Efternamn>
+        <base:Fornamn>Peter</base:Fornamn>
+        <base:Personnummer>197011309395</base:Personnummer>
+        <base:StudentUID>09d789ca-82a4-46e0-91dc-49c90bdac2f7</base:StudentUID>
+        <base:StudentURI>https://ladok3test.its.umu.se:444/studentinformation/student/09d789ca-82a4-46e0-91dc-49c90bdac2f7</base:StudentURI>
+      </base:StudentEtableradHandelse>
+    </content>
+  </entry>
+  <entry>
+    <title type="text">Event #: 2</title>
+    <category term="se.ladok.commons.interfaces.events.StudentEtableradEvent"/>
+    <id>4730b459-8a04-4697-9ee7-5b8333ed5496</id>
+    <updated>2012-12-03T13:38:38Z</updated>
+    <content type="application/vnd.ladok+xml">
+      <base:StudentEtableradHandelse xmlns:base="http://schemas.ladok.se" xmlns:dap="http://schemas.ladok.se/dap">
+        <base:EventContext>
+          <base:LarosateID>-1</base:LarosateID>
+        </base:EventContext>
+        <base:Handelsetid>2012-12-03T14:38:38.985</base:Handelsetid>
+        <base:HandelseUID>4730b459-8a04-4697-9ee7-5b8333ed5496</base:HandelseUID>
+        <base:Efternamn>HANSSON</base:Efternamn>
+        <base:Fornamn>JENNY</base:Fornamn>
+        <base:Personnummer>198107170790</base:Personnummer>
+        <base:StudentUID>6b486f9f-cacb-4958-b93d-b723c86f9e65</base:StudentUID>
+        <base:StudentURI>https://ladok3test.its.umu.se:444/studentinformation/student/6b486f9f-cacb-4958-b93d-b723c86f9e65</base:StudentURI>
+      </base:StudentEtableradHandelse>
+    </content>
+  </entry>
+  <entry>
+    <title type="text">Event #: 3</title>
+    <category term="se.ladok.commons.interfaces.events.StudentEtableradEvent"/>
+    <id>b436a446-7d83-4030-9c34-1a0b0889118f</id>
+    <updated>2012-12-03T13:38:38Z</updated>
+    <content type="application/vnd.ladok+xml">
+      <base:StudentEtableradHandelse xmlns:base="http://schemas.ladok.se" xmlns:dap="http://schemas.ladok.se/dap">
+        <base:EventContext>
+          <base:LarosateID>-1</base:LarosateID>
+        </base:EventContext>
+        <base:Handelsetid>2012-12-03T14:38:38.898</base:Handelsetid>
+        <base:HandelseUID>b436a446-7d83-4030-9c34-1a0b0889118f</base:HandelseUID>
+        <base:Efternamn>ERIKSSON</base:Efternamn>
+        <base:Fornamn>SUNE</base:Fornamn>
+        <base:Personnummer>190802047670</base:Personnummer>
+        <base:StudentUID>ba541578-c530-406b-b7fc-2aaa3322a7ba</base:StudentUID>
+        <base:StudentURI>https://ladok3test.its.umu.se:444/studentinformation/student/ba541578-c530-406b-b7fc-2aaa3322a7ba</base:StudentURI>
+      </base:StudentEtableradHandelse>
+    </content>
+  </entry>
+  <entry>
+    <title type="text">Event #: 4</title>
+    <category term="se.ladok.commons.interfaces.events.StudentEtableradEvent"/>
+    <id>1a81114e-b634-42fa-978f-6df60de1db15</id>
+    <updated>2012-12-03T13:38:38Z</updated>
+    <content type="application/vnd.ladok+xml">
+      <base:StudentEtableradHandelse xmlns:base="http://schemas.ladok.se" xmlns:dap="http://schemas.ladok.se/dap">
+        <base:EventContext>
+          <base:LarosateID>-1</base:LarosateID>
+        </base:EventContext>
+        <base:Handelsetid>2012-12-03T14:38:38.814</base:Handelsetid>
+        <base:HandelseUID>1a81114e-b634-42fa-978f-6df60de1db15</base:HandelseUID>
+        <base:Efternamn>LINDBERG</base:Efternamn>
+        <base:Fornamn>LISA</base:Fornamn>
+        <base:Personnummer>191209177748</base:Personnummer>
+        <base:StudentUID>db8a4d64-619a-4dbe-8a7b-09f2ca753091</base:StudentUID>
+        <base:StudentURI>https://ladok3test.its.umu.se:444/studentinformation/student/db8a4d64-619a-4dbe-8a7b-09f2ca753091</base:StudentURI>
+      </base:StudentEtableradHandelse>
+    </content>
+  </entry>
+  <entry>
+    <title type="text">Event #: 5</title>
+    <category term="se.ladok.commons.interfaces.events.StudentEtableradEvent"/>
+    <id>b33053a9-c186-46a7-8b40-7a274f79c4a5</id>
+    <updated>2012-12-03T13:38:38Z</updated>
+    <content type="application/vnd.ladok+xml">
+      <base:StudentEtableradHandelse xmlns:base="http://schemas.ladok.se" xmlns:dap="http://schemas.ladok.se/dap">
+        <base:EventContext>
+          <base:LarosateID>-1</base:LarosateID>
+        </base:EventContext>
+        <base:Handelsetid>2012-12-03T14:38:38.726</base:Handelsetid>
+        <base:HandelseUID>b33053a9-c186-46a7-8b40-7a274f79c4a5</base:HandelseUID>
+        <base:Efternamn>BERGLUND</base:Efternamn>
+        <base:Fornamn>BERIT</base:Fornamn>
+        <base:Personnummer>196812021753</base:Personnummer>
+        <base:StudentUID>4b719f49-36a1-4ddf-9895-22e2f050a4d3</base:StudentUID>
+        <base:StudentURI>https://ladok3test.its.umu.se:444/studentinformation/student/4b719f49-36a1-4ddf-9895-22e2f050a4d3</base:StudentURI>
+      </base:StudentEtableradHandelse>
+    </content>
+  </entry>
+  <entry>
+    <title type="text">Event #: 6</title>
+    <category term="se.ladok.commons.interfaces.events.StudentEtableradEvent"/>
+    <id>faae6a5a-46ee-4bfa-8dce-d54067b02a4e</id>
+    <updated>2012-12-03T13:38:38Z</updated>
+    <content type="application/vnd.ladok+xml">
+      <base:StudentEtableradHandelse xmlns:base="http://schemas.ladok.se" xmlns:dap="http://schemas.ladok.se/dap">
+        <base:EventContext>
+          <base:LarosateID>-1</base:LarosateID>
+        </base:EventContext>
+        <base:Handelsetid>2012-12-03T14:38:38.650</base:Handelsetid>
+        <base:HandelseUID>faae6a5a-46ee-4bfa-8dce-d54067b02a4e</base:HandelseUID>
+        <base:Efternamn>FREDRIKSSON</base:Efternamn>
+        <base:Fornamn>GUNILLA</base:Fornamn>
+        <base:Personnummer>191103053045</base:Personnummer>
+        <base:StudentUID>561037cb-6034-4aae-8a0d-96cc1a2a52b4</base:StudentUID>
+        <base:StudentURI>https://ladok3test.its.umu.se:444/studentinformation/student/561037cb-6034-4aae-8a0d-96cc1a2a52b4</base:StudentURI>
+      </base:StudentEtableradHandelse>
+    </content>
+  </entry>
+  <entry>
+    <title type="text">Event #: 7</title>
+    <category term="se.ladok.commons.interfaces.events.StudentEtableradEvent"/>
+    <id>05c8e76d-17b0-4925-9e2a-d0da015f1356</id>
+    <updated>2012-12-03T13:38:38Z</updated>
+    <content type="application/vnd.ladok+xml">
+      <base:StudentEtableradHandelse xmlns:base="http://schemas.ladok.se" xmlns:dap="http://schemas.ladok.se/dap">
+        <base:EventContext>
+          <base:LarosateID>-1</base:LarosateID>
+        </base:EventContext>
+        <base:Handelsetid>2012-12-03T14:38:38.581</base:Handelsetid>
+        <base:HandelseUID>05c8e76d-17b0-4925-9e2a-d0da015f1356</base:HandelseUID>
+        <base:Efternamn>JÖNSSON</base:Efternamn>
+        <base:Fornamn>MY</base:Fornamn>
+        <base:Personnummer>195909210857</base:Personnummer>
+        <base:StudentUID>bf1cc171-9060-4f46-98ad-c50d546e2fe8</base:StudentUID>
+        <base:StudentURI>https://ladok3test.its.umu.se:444/studentinformation/student/bf1cc171-9060-4f46-98ad-c50d546e2fe8</base:StudentURI>
+      </base:StudentEtableradHandelse>
+    </content>
+  </entry>
+  <entry>
+    <title type="text">Event #: 8</title>
+    <category term="se.ladok.commons.interfaces.events.StudentEtableradEvent"/>
+    <id>1c4fc3bb-a4de-481e-bd53-836d0d3e8832</id>
+    <updated>2012-12-03T13:38:38Z</updated>
+    <content type="application/vnd.ladok+xml">
+      <base:StudentEtableradHandelse xmlns:base="http://schemas.ladok.se" xmlns:dap="http://schemas.ladok.se/dap">
+        <base:EventContext>
+          <base:LarosateID>-1</base:LarosateID>
+        </base:EventContext>
+        <base:Handelsetid>2012-12-03T14:38:38.496</base:Handelsetid>
+        <base:HandelseUID>1c4fc3bb-a4de-481e-bd53-836d0d3e8832</base:HandelseUID>
+        <base:Efternamn>LINDSTRÖM</base:Efternamn>
+        <base:Fornamn>BERTIL</base:Fornamn>
+        <base:Personnummer>197101046469</base:Personnummer>
+        <base:StudentUID>450fa36b-d807-4393-98b3-4764587df0b3</base:StudentUID>
+        <base:StudentURI>https://ladok3test.its.umu.se:444/studentinformation/student/450fa36b-d807-4393-98b3-4764587df0b3</base:StudentURI>
+      </base:StudentEtableradHandelse>
+    </content>
+  </entry>
+  <entry>
+    <title type="text">Event #: 9</title>
+    <category term="se.ladok.commons.interfaces.events.StudentEtableradEvent"/>
+    <id>fc77f297-2b04-42a3-9598-1af489e6acef</id>
+    <updated>2012-12-03T13:38:38Z</updated>
+    <content type="application/vnd.ladok+xml">
+      <base:StudentEtableradHandelse xmlns:base="http://schemas.ladok.se" xmlns:dap="http://schemas.ladok.se/dap">
+        <base:EventContext>
+          <base:LarosateID>-1</base:LarosateID>
+        </base:EventContext>
+        <base:Handelsetid>2012-12-03T14:38:38.436</base:Handelsetid>
+        <base:HandelseUID>fc77f297-2b04-42a3-9598-1af489e6acef</base:HandelseUID>
+        <base:Efternamn>LARSSON</base:Efternamn>
+        <base:Fornamn>SUNE</base:Fornamn>
+        <base:Personnummer>196203028144</base:Personnummer>
+        <base:StudentUID>48ad890b-a5ce-45fc-ad4f-7cc0c08a100d</base:StudentUID>
+        <base:StudentURI>https://ladok3test.its.umu.se:444/studentinformation/student/48ad890b-a5ce-45fc-ad4f-7cc0c08a100d</base:StudentURI>
+      </base:StudentEtableradHandelse>
+    </content>
+  </entry>
+  <entry>
+    <title type="text">Event #: 10</title>
+    <category term="se.ladok.commons.interfaces.events.StudentEtableradEvent"/>
+    <id>7aca6c85-ad4a-4520-9176-a436c1d5cbce</id>
+    <updated>2012-12-03T13:38:38Z</updated>
+    <content type="application/vnd.ladok+xml">
+      <base:StudentEtableradHandelse xmlns:base="http://schemas.ladok.se" xmlns:dap="http://schemas.ladok.se/dap">
+        <base:EventContext>
+          <base:LarosateID>-1</base:LarosateID>
+        </base:EventContext>
+        <base:Handelsetid>2012-12-03T14:38:38.365</base:Handelsetid>
+        <base:HandelseUID>7aca6c85-ad4a-4520-9176-a436c1d5cbce</base:HandelseUID>
+        <base:Efternamn>LINDQVIST</base:Efternamn>
+        <base:Fornamn>STEFAN</base:Fornamn>
+        <base:Personnummer>196903234554</base:Personnummer>
+        <base:StudentUID>67ff3a27-c9b1-4633-8899-ac5182c58b09</base:StudentUID>
+        <base:StudentURI>https://ladok3test.its.umu.se:444/studentinformation/student/67ff3a27-c9b1-4633-8899-ac5182c58b09</base:StudentURI>
+      </base:StudentEtableradHandelse>
+    </content>
+  </entry>
+  <entry>
+    <title type="text">Event #: 11</title>
+    <category term="se.ladok.commons.interfaces.events.StudentEtableradEvent"/>
+    <id>67fe6106-cec2-44cf-b9ce-dab6a103c191</id>
+    <updated>2012-12-03T13:38:38Z</updated>
+    <content type="application/vnd.ladok+xml">
+      <base:StudentEtableradHandelse xmlns:base="http://schemas.ladok.se" xmlns:dap="http://schemas.ladok.se/dap">
+        <base:EventContext>
+          <base:LarosateID>-1</base:LarosateID>
+        </base:EventContext>
+        <base:Handelsetid>2012-12-03T14:38:38.303</base:Handelsetid>
+        <base:HandelseUID>67fe6106-cec2-44cf-b9ce-dab6a103c191</base:HandelseUID>
+        <base:Efternamn>LUNDGREN</base:Efternamn>
+        <base:Fornamn>IDA</base:Fornamn>
+        <base:Personnummer>193204175784</base:Personnummer>
+        <base:StudentUID>972c7901-8d5b-42e0-9680-0e0c8ec404c2</base:StudentUID>
+        <base:StudentURI>https://ladok3test.its.umu.se:444/studentinformation/student/972c7901-8d5b-42e0-9680-0e0c8ec404c2</base:StudentURI>
+      </base:StudentEtableradHandelse>
+    </content>
+  </entry>
+  <entry>
+    <title type="text">Event #: 12</title>
+    <category term="se.ladok.commons.interfaces.events.StudentEtableradEvent"/>
+    <id>687965d5-244f-4cb2-a7f0-f52a35fc7834</id>
+    <updated>2012-12-03T13:38:38Z</updated>
+    <content type="application/vnd.ladok+xml">
+      <base:StudentEtableradHandelse xmlns:base="http://schemas.ladok.se" xmlns:dap="http://schemas.ladok.se/dap">
+        <base:EventContext>
+          <base:LarosateID>-1</base:LarosateID>
+        </base:EventContext>
+        <base:Handelsetid>2012-12-03T14:38:38.241</base:Handelsetid>
+        <base:HandelseUID>687965d5-244f-4cb2-a7f0-f52a35fc7834</base:HandelseUID>
+        <base:Efternamn>JANSSON</base:Efternamn>
+        <base:Fornamn>MATS</base:Fornamn>
+        <base:Personnummer>190612146936</base:Personnummer>
+        <base:StudentUID>36b11498-df6c-4360-8053-4a5fa68a15dc</base:StudentUID>
+        <base:StudentURI>https://ladok3test.its.umu.se:444/studentinformation/student/36b11498-df6c-4360-8053-4a5fa68a15dc</base:StudentURI>
+      </base:StudentEtableradHandelse>
+    </content>
+  </entry>
+  <entry>
+    <title type="text">Event #: 13</title>
+    <category term="se.ladok.commons.interfaces.events.StudentEtableradEvent"/>
+    <id>6c08e94c-73d3-4e46-99cf-13d48e995346</id>
+    <updated>2012-12-03T13:38:38Z</updated>
+    <content type="application/vnd.ladok+xml">
+      <base:StudentEtableradHandelse xmlns:base="http://schemas.ladok.se" xmlns:dap="http://schemas.ladok.se/dap">
+        <base:EventContext>
+          <base:LarosateID>-1</base:LarosateID>
+        </base:EventContext>
+        <base:Handelsetid>2012-12-03T14:38:38.157</base:Handelsetid>
+        <base:HandelseUID>6c08e94c-73d3-4e46-99cf-13d48e995346</base:HandelseUID>
+        <base:Efternamn>JAKOBSSON</base:Efternamn>
+        <base:Fornamn>BERTIL</base:Fornamn>
+        <base:Personnummer>195108140632</base:Personnummer>
+        <base:StudentUID>306739bf-658e-40e9-9bea-3fbd47b8353a</base:StudentUID>
+        <base:StudentURI>https://ladok3test.its.umu.se:444/studentinformation/student/306739bf-658e-40e9-9bea-3fbd47b8353a</base:StudentURI>
+      </base:StudentEtableradHandelse>
+    </content>
+  </entry>
+  <entry>
+    <title type="text">Event #: 14</title>
+    <category term="se.ladok.commons.interfaces.events.StudentEtableradEvent"/>
+    <id>057fafc6-f178-47b6-bebf-449c41eff43e</id>
+    <updated>2012-12-03T13:38:38Z</updated>
+    <content type="application/vnd.ladok+xml">
+      <base:StudentEtableradHandelse xmlns:base="http://schemas.ladok.se" xmlns:dap="http://schemas.ladok.se/dap">
+        <base:EventContext>
+          <base:LarosateID>-1</base:LarosateID>
+        </base:EventContext>
+        <base:Handelsetid>2012-12-03T14:38:38.066</base:Handelsetid>
+        <base:HandelseUID>057fafc6-f178-47b6-bebf-449c41eff43e</base:HandelseUID>
+        <base:Efternamn>LINDBERG</base:Efternamn>
+        <base:Fornamn>LENNART</base:Fornamn>
+        <base:Personnummer>199405210007</base:Personnummer>
+        <base:StudentUID>030de4f6-6dde-45e3-aa30-7aa6af887a42</base:StudentUID>
+        <base:StudentURI>https://ladok3test.its.umu.se:444/studentinformation/student/030de4f6-6dde-45e3-aa30-7aa6af887a42</base:StudentURI>
+      </base:StudentEtableradHandelse>
+    </content>
+  </entry>
+  <entry>
+    <title type="text">Event #: 15</title>
+    <category term="se.ladok.commons.interfaces.events.StudentEtableradEvent"/>
+    <id>d9ece864-585f-4f66-ac42-9bbe7d3d935b</id>
+    <updated>2012-12-03T13:38:38Z</updated>
+    <content type="application/vnd.ladok+xml">
+      <base:StudentEtableradHandelse xmlns:base="http://schemas.ladok.se" xmlns:dap="http://schemas.ladok.se/dap">
+        <base:EventContext>
+          <base:LarosateID>-1</base:LarosateID>
+        </base:EventContext>
+        <base:Handelsetid>2012-12-03T14:38:38.005</base:Handelsetid>
+        <base:HandelseUID>d9ece864-585f-4f66-ac42-9bbe7d3d935b</base:HandelseUID>
+        <base:Efternamn>GUSTAFSSON</base:Efternamn>
+        <base:Fornamn>SUNE</base:Fornamn>
+        <base:Personnummer>194409102110</base:Personnummer>
+        <base:StudentUID>2c9ca4b1-f47e-46b8-b08b-2f015cecc895</base:StudentUID>
+        <base:StudentURI>https://ladok3test.its.umu.se:444/studentinformation/student/2c9ca4b1-f47e-46b8-b08b-2f015cecc895</base:StudentURI>
+      </base:StudentEtableradHandelse>
+    </content>
+  </entry>
+  <entry>
+    <title type="text">Event #: 16</title>
+    <category term="se.ladok.commons.interfaces.events.StudentEtableradEvent"/>
+    <id>93d4bd31-725d-4370-bd6a-91a612b4f78d</id>
+    <updated>2012-12-03T13:38:37Z</updated>
+    <content type="application/vnd.ladok+xml">
+      <base:StudentEtableradHandelse xmlns:base="http://schemas.ladok.se" xmlns:dap="http://schemas.ladok.se/dap">
+        <base:EventContext>
+          <base:LarosateID>-1</base:LarosateID>
+        </base:EventContext>
+        <base:Handelsetid>2012-12-03T14:38:37.923</base:Handelsetid>
+        <base:HandelseUID>93d4bd31-725d-4370-bd6a-91a612b4f78d</base:HandelseUID>
+        <base:Efternamn>LARSSON</base:Efternamn>
+        <base:Fornamn>BERTIL</base:Fornamn>
+        <base:Personnummer>197905234378</base:Personnummer>
+        <base:StudentUID>79d15212-8248-49e7-a325-b1f70cd79b69</base:StudentUID>
+        <base:StudentURI>https://ladok3test.its.umu.se:444/studentinformation/student/79d15212-8248-49e7-a325-b1f70cd79b69</base:StudentURI>
+      </base:StudentEtableradHandelse>
+    </content>
+  </entry>
+  <entry>
+    <title type="text">Event #: 17</title>
+    <category term="se.ladok.commons.interfaces.events.StudentEtableradEvent"/>
+    <id>96f40d06-12c6-4d4a-964b-f131a8fcbd80</id>
+    <updated>2012-12-03T13:38:37Z</updated>
+    <content type="application/vnd.ladok+xml">
+      <base:StudentEtableradHandelse xmlns:base="http://schemas.ladok.se" xmlns:dap="http://schemas.ladok.se/dap">
+        <base:EventContext>
+          <base:LarosateID>-1</base:LarosateID>
+        </base:EventContext>
+        <base:Handelsetid>2012-12-03T14:38:37.854</base:Handelsetid>
+        <base:HandelseUID>96f40d06-12c6-4d4a-964b-f131a8fcbd80</base:HandelseUID>
+        <base:Efternamn>BERGLUND</base:Efternamn>
+        <base:Fornamn>FREDRIK</base:Fornamn>
+        <base:Personnummer>191508118534</base:Personnummer>
+        <base:StudentUID>ab1325b7-77ee-4eab-94dc-468269010774</base:StudentUID>
+        <base:StudentURI>https://ladok3test.its.umu.se:444/studentinformation/student/ab1325b7-77ee-4eab-94dc-468269010774</base:StudentURI>
+      </base:StudentEtableradHandelse>
+    </content>
+  </entry>
+  <entry>
+    <title type="text">Event #: 18</title>
+    <category term="se.ladok.commons.interfaces.events.StudentEtableradEvent"/>
+    <id>ac7291e4-4454-4ba7-8284-454871e40ce8</id>
+    <updated>2012-12-03T13:38:37Z</updated>
+    <content type="application/vnd.ladok+xml">
+      <base:StudentEtableradHandelse xmlns:base="http://schemas.ladok.se" xmlns:dap="http://schemas.ladok.se/dap">
+        <base:EventContext>
+          <base:LarosateID>-1</base:LarosateID>
+        </base:EventContext>
+        <base:Handelsetid>2012-12-03T14:38:37.777</base:Handelsetid>
+        <base:HandelseUID>ac7291e4-4454-4ba7-8284-454871e40ce8</base:HandelseUID>
+        <base:Efternamn>JOHANSSON</base:Efternamn>
+        <base:Fornamn>MY</base:Fornamn>
+        <base:Personnummer>192509130205</base:Personnummer>
+        <base:StudentUID>e8309941-1c8c-4a86-9d93-4de8b47f7a46</base:StudentUID>
+        <base:StudentURI>https://ladok3test.its.umu.se:444/studentinformation/student/e8309941-1c8c-4a86-9d93-4de8b47f7a46</base:StudentURI>
+      </base:StudentEtableradHandelse>
+    </content>
+  </entry>
+  <entry>
+    <title type="text">Event #: 19</title>
+    <category term="se.ladok.commons.interfaces.events.StudentEtableradEvent"/>
+    <id>c482179c-c9bf-4202-901b-a86ffa3c8fd1</id>
+    <updated>2012-12-03T13:38:37Z</updated>
+    <content type="application/vnd.ladok+xml">
+      <base:StudentEtableradHandelse xmlns:base="http://schemas.ladok.se" xmlns:dap="http://schemas.ladok.se/dap">
+        <base:EventContext>
+          <base:LarosateID>-1</base:LarosateID>
+        </base:EventContext>
+        <base:Handelsetid>2012-12-03T14:38:37.697</base:Handelsetid>
+        <base:HandelseUID>c482179c-c9bf-4202-901b-a86ffa3c8fd1</base:HandelseUID>
+        <base:Efternamn>LUNDGREN</base:Efternamn>
+        <base:Fornamn>SVEN</base:Fornamn>
+        <base:Personnummer>196302081549</base:Personnummer>
+        <base:StudentUID>7c9100f5-1261-4026-a9be-2d07119f75c1</base:StudentUID>
+        <base:StudentURI>https://ladok3test.its.umu.se:444/studentinformation/student/7c9100f5-1261-4026-a9be-2d07119f75c1</base:StudentURI>
+      </base:StudentEtableradHandelse>
+    </content>
+  </entry>
+</feed>

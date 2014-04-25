@@ -1,0 +1,53 @@
+#! /bin/sh
+#
+# servicemix   This shell script takes care of starting and stopping
+#              Apache servicemix.
+#
+# chkconfig: 2345 80 20
+# description: Apache ServiceMix comprises an ActiveMQ broker, \
+# Apache Camel and other integration tools.
+
+. /etc/environment
+export JAVA_HOME
+export PATH=$JAVA_HOME/bin:$PATH
+export KARAF_USER=smx
+export KARAF_DATA=/var/lib/servicemix
+
+DAEMON=/opt/servicemix/apache-servicemix-4.5.3/bin/servicemix
+LOGFILE=//opt/servicemix/servicemix_start.log
+NAME=servicemix
+DESC=servicemix
+
+test -x $DAEMON || exit 0
+
+CMD="$1"
+
+set -e
+
+case "$CMD" in
+  start)
+	echo -n "Starting $DESC: "
+	su -c "nohup > $LOGFILE 2>&1 $DAEMON $DMNOPTS server &" $KARAF_USER
+	echo "$NAME."
+	;;
+  stop)
+	echo -n "Stopping $DESC: "
+	su -c "$DAEMON stop" $KARAF_USER
+	echo "$NAME."
+	;;
+  restart)
+	echo -n "Restarting $DESC: "
+	su -c "$DAEMON stop" - $KARAF_USER
+	su -c "nohup > $LOGFILE 2>&1 $DAEMON $DMNOPTS server &" $KARAF_USER
+	echo "$NAME."
+	;;
+  *)
+	N=/etc/init.d/$NAME
+	# echo "Usage: $N {start|stop|restart}" >&2
+	echo "Usage: $N {start|stop|restart}" >&2
+	exit 1
+	;;
+esac
+
+exit 0
+
