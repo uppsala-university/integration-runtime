@@ -1,8 +1,11 @@
 package se.uu.its.skutt.ladok3.feeds;
 
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
+import java.io.IOException;
 import java.util.Properties;
+
 import org.apache.abdera.model.Entry;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -12,6 +15,17 @@ public class FileBasedEventPersistance implements EventPersistance {
 	private Log log = LogFactory.getLog(this.getClass());
 	private static String FILENAME="ladok.log";
 	private static String PROPERTY="last";
+	
+	static {
+		File f = new File("ladok.log");
+		if (!f.exists()) {
+			try {
+				f.createNewFile();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
+	}
 	
 	@Override
 	public Entry saveEntry(Entry e) {

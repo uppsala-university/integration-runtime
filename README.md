@@ -55,6 +55,7 @@ att den hamnar på den delade disken mellan vagrant-maskinen och värd-maskinen.
 att utveckla. 
 
 `$ cp feedhandler/target/feedhandler-0.0.1-SNAPSHOT.jar smx/deploy/`
+
 `$ cp feedhandler-servicemix/target/feedhandler-servicemix-0.0.1-SNAPSHOT.jar smx/deploy/`
 
 Deploya även en konsument om du vill det
