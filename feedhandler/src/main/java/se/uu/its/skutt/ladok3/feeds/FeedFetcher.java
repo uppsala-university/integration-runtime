@@ -40,7 +40,7 @@ public class FeedFetcher {
 		try {
 			InputStream in = this.getClass().getClassLoader().getResourceAsStream("feedfetcher.properties");
 			if (in == null) {
-				throw new Exception("Unable to find feedfetcher.properties");
+				throw new Exception("Unable to find feedfetcher.properties (see feedfetcher.properties.sample)");
 			}
 			properties.load(in);
 			if ((feedBase=properties.getProperty("feedbase")) == null) {
