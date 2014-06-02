@@ -9,7 +9,7 @@
 
 	<artifactId>feedhandler</artifactId>
 	<version>${parent.version}</version>
-	<packaging>jar</packaging>
+	<packaging>bundle</packaging>
 
 	<dependencies>
 		<dependency>
