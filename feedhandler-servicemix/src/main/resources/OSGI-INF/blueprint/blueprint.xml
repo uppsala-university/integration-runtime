@@ -18,6 +18,7 @@
         <route>
         	<from uri="timer://ladok?fixedRate=true&amp;period=5000&amp;repeatCount=0"/>
         	<to uri="bean:eventPersistance?method=getNextEventNumber"/>
+        	<to uri="log:log-test?level=INFO"/>
         	<to uri="bean:feedFetcher?method=getEntries"/>
         	<split streaming="true">
         		<simple>${body}</simple>

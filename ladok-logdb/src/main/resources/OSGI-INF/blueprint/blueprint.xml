@@ -27,16 +27,17 @@
 					<unmarshal>
       					<jaxb prettyPrint="true" contextPath="se.uu.its.skutt.ladok3.feeds.dto"/>
     				</unmarshal>
+    				 
 					<!--  Nu har vi ett KursTillStatus3Handelse-objekt. Notera "BodyType" i loggen -->
 					<to uri="log:ladok-logdb?level=INFO" />
 				</when>
 				<otherwise>
 					<setBody>
 						<simple>Unknown event ${header.category}</simple>
-						<to uri="log:ladok-logdb?level=ERROR" />
 					</setBody>
+					<to uri="log:ladok-logdb?level=ERROR" />
 				</otherwise>
-			</choice>
+			</choice> 
 		</route>
 	</camelContext>
 

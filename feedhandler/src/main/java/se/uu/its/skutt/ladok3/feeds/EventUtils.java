@@ -18,11 +18,12 @@ public class EventUtils {
 	 */
 	public static long getEventNumber(Entry e) {
 		int nr = 0;
-		String nrAsString = e.getTitle();
+		String nrAsString = e.getTitle().replaceAll("[^0-9]", "");
 		try {
 			nr = new Integer(nrAsString);
 		}
-		catch(NumberFormatException ex) { }
+		catch(NumberFormatException ex) {
+		}
 		return(nr);
 	}
 

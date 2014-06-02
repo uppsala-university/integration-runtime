@@ -21,6 +21,12 @@ Starta servicmix i den virtuella miljön
 
 Håll sedan koll på filen /var/lib/servicemix/log/servicemix.log. 
 
+Konsol för servicemix
+=====================
+Kör ssh mot servicemix. Lösenorder är "smx"
+
+`$ ssh -p 8101 smx@localhost`
+
 
 Installera webkonsoll för ActiveMQ samt Hawtio
 ==============================================

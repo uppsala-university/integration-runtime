@@ -6,10 +6,11 @@
 		<artifactId>feedhandler-bundle</artifactId>
 		<version>0.0.1-SNAPSHOT</version>
 	</parent>
-	
+
 	<artifactId>feedhandler-servicemix</artifactId>
 	<version>${parent.version}</version>
 	<packaging>bundle</packaging>
+
 
 	<build>
 		<plugins>
@@ -29,7 +30,7 @@
 							org.osgi.service.blueprint;version="[1.0.0,2.0.0]",
 							com.ctc.wstx.stax,
 							se.uu.its.skutt.ladok3.feeds;version="[0.0,1]",
-							se.uu.its.skutt.ladok3.feeds.dto;version="[0.0,1]"		
+							se.uu.its.skutt.ladok3.feeds.dto;version="[0.0,1]"
 						</Import-Package>
 					</instructions>
 				</configuration>

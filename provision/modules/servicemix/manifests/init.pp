@@ -15,18 +15,24 @@ class servicemix {
    		source 		=> 'puppet:///modules/servicemix/apache-servicemix-4.5.3-0.noarch.rpm',
    		require		=> File['/opt/rpm']
    	}
-   	
-   	file { '/opt/servicemix/apache-servicemix-4.5.3/deploy/abdera-1.1.3-feature.xml':
-   		source 		=> 'puppet:///modules/servicemix/abdera-1.1.3-feature.xml',
-   		require		=> File['/opt/rpm']
-   	}
 
 	package { 'apache-servicemix':
 		require 	=> File['/opt/rpm/apache-servicemix-4.5.3-0.noarch.rpm'],
 		provider 	=> 'rpm',
-		ensure 		=> installed, 
 		source 		=> '/opt/rpm/apache-servicemix-4.5.3-0.noarch.rpm'
 	}
+
+	service { 'apache-servicemix':
+		enable		=>	true,
+		ensure 		=> running,
+		require		=> Package['apache-servicemix']
+	}
+
+	file { '/opt/servicemix/apache-servicemix-4.5.3/deploy/abdera-1.1.3-feature.xml':
+   		source 		=> 'puppet:///modules/servicemix/abdera-1.1.3-feature.xml',
+   		require		=> Service['apache-servicemix']
+
+   	}
 	
 	file { '/opt/servicemix/smx-relink.sh': 
 		source 		=> 'puppet:///modules/servicemix/smx-relink.sh',

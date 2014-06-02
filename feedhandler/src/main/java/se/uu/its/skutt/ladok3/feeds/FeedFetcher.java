@@ -32,6 +32,8 @@ public class FeedFetcher {
 
 	private Properties properties;
 
+	private boolean useCert = true;
+
 
 	public FeedFetcher() throws Exception {
 		properties = new Properties();
@@ -45,10 +47,11 @@ public class FeedFetcher {
 				throw new Exception("Missing property \"feedbase\"");
 			}
 			if ((certificateFile=properties.getProperty("certificateFile")) == null) {
-				throw new Exception("Missing property \"certificateFile\"");
+				//	throw new Exception("Missing property \"certificateFile\"");
+				useCert = false;
 			}
 			if ((certificatePwd=properties.getProperty("certificatePwd")) == null) {
-					throw new Exception("Missing property \"certificatePwd\"");
+				//	throw new Exception("Missing property \"certificatePwd\"");
 			}
 		}
 		catch (IOException e) {
@@ -56,16 +59,19 @@ public class FeedFetcher {
 			throw e;
 		}
 	}
-	
+
 	private AbderaClient getClient() throws Exception {
+		log.info("useCert =" + useCert);
 		Abdera abdera = new Abdera();
 		AbderaClient client = new AbderaClient(abdera);
 		KeyStore keystore;
 		try {
-			keystore = KeyStore.getInstance("PKCS12");
-			keystore.load(this.getClass().getClassLoader().getResourceAsStream(certificateFile), certificatePwd.toCharArray());
-			ClientAuthSSLProtocolSocketFactory factory = new ClientAuthSSLProtocolSocketFactory(keystore, certificatePwd, "TLS",KeyManagerFactory.getDefaultAlgorithm(),null);
-			AbderaClient.registerFactory(factory, 443);
+			if (useCert) {
+				keystore = KeyStore.getInstance("PKCS12");
+				keystore.load(this.getClass().getClassLoader().getResourceAsStream(certificateFile), certificatePwd.toCharArray());
+				ClientAuthSSLProtocolSocketFactory factory = new ClientAuthSSLProtocolSocketFactory(keystore, certificatePwd, "TLS",KeyManagerFactory.getDefaultAlgorithm(),null);
+				AbderaClient.registerFactory(factory, 443);
+			}
 			return(client);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
@@ -87,7 +93,7 @@ public class FeedFetcher {
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
-			log.error(e.getMessage() + " :: " + url);
+			log.error(e + " :: " + url);
 			return (null);
 		}
 	}
@@ -121,8 +127,8 @@ public class FeedFetcher {
 		}
 		return (entries);
 	}
-	
-	
+
+
 	/**
 	 * Vänd på alla entry-objekt i en feed. 
 	 * De kommer i fallande kronologisk ordning.
@@ -150,7 +156,7 @@ public class FeedFetcher {
 		log.info("Attempting to get events " + fromNr + " to " + toNr);
 		Feed f = this.getFeedFromNr(fromNr > 0 ? fromNr -1 : fromNr);
 		List<Entry> allEntries = new ArrayList<Entry>();
-		
+
 		List<Entry> feedEntries = this.sortEntriesFromFeed(f);
 		for (Entry e : feedEntries) {
 			if (EventUtils.getEventNumber(e) <= toNr) {
