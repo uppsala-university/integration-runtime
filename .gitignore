@@ -9,3 +9,4 @@ release.properties
 .vagrant
 *.p12
 smx/
+feedfetcher.properties
