@@ -12,7 +12,7 @@
 		</onException>
 		 
 		<route id="ladok-logdb">
-			<from uri="activemq:ladok-logdb?transacted=true" />
+			<from uri="activemq:ladok3event-logdb?transacted=true" />
 			<setHeader headerName="category">
 				<xpath resultType="java.lang.String">/atom:entry/atom:category/@term</xpath>
 			</setHeader>

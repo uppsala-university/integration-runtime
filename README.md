@@ -27,6 +27,14 @@ Kör ssh mot servicemix. Lösenorder är "smx"
 
 `$ ssh -p 8101 smx@localhost`
 
+I konsollen kan du t.ex. titta på inkommande kön:
+
+`activemq:browse --amqurl tcp://localhost:61616 ladok3-event-distribution`
+
+eller följa loggen:
+
+`log:tail`
+
 
 Installera webkonsoll för ActiveMQ samt Hawtio
 ==============================================

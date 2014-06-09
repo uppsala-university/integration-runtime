@@ -35,10 +35,7 @@
         	<from uri="direct:distribute"/>
         	<to uri="bean:eventPersistance?method=saveEntry"/>
         	<convertBodyTo type="java.lang.String"/>
-        	<multicast stopOnException="true">
-        		<to uri="activemq:ladok-logdb"/>
-        		<to uri="activemq:ladok-uudb"/>
-    		</multicast>
+        	<to uri="activemq:queue:ladok3-event-distribution"/>
         </route>
     </camelContext>
     

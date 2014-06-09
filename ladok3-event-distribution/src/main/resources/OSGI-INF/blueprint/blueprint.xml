@@ -7,9 +7,15 @@
 
     <camelContext xmlns="http://camel.apache.org/schema/blueprint">
         <route>
-            <from uri="activemq:queue:ladok-client-1" />
+            <from uri="activemq:queue:ladok3-event-distribution" />
             <transform><simple>Processing from Ladok: ${header.ladokEventNumber}</simple></transform>
-            <to uri="log:feedhandler-consumer-servicemix" />
+            <multicast stopOnException="true">
+	            <to uri="log:feedhandler-consumer-servicemix" />
+	            <to uri="activemq:queue:ladok3event-akka" />
+	            <to uri="activemq:queue:ladok3event-sp" />
+	            <to uri="activemq:queue:ladok3event-sesam" />
+	            <to uri="activemq:queue:ladok3event-logdb" />
+            </multicast>
         </route>
     </camelContext>
 
