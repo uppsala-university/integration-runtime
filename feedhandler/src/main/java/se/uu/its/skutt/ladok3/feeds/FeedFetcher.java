@@ -28,7 +28,7 @@ public class FeedFetcher {
 	private String certificateFile = null;
 	private String certificatePwd = null;
 	private Log log = LogFactory.getLog(this.getClass());
-	private static int MAX_ENTRIES_PER_RUN = 100;
+	private static int MAX_ENTRIES_PER_RUN = 1000;
 
 	private Properties properties;
 
@@ -198,9 +198,11 @@ public class FeedFetcher {
 			if ("next-archive".equalsIgnoreCase(link.getRel())) {
 				retval = link.getAttributeValue("href");
 			}
-		}		
+		}
+		//URL:er i MIT-feeden stämmer inte.
 		if(retval != null) {
 			retval = retval.replaceAll("http://mit-ladok3.its.umu.se:8084", "https://api.mit.ladok.se");
+			retval = retval.replaceAll("http://mit-ik-ladok3.its.umu.se:8082", "https://api.mit.ladok.se");
 		}
 		return (retval);
 	}
