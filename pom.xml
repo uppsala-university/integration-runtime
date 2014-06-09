@@ -10,10 +10,10 @@
 	<name>Ladok 3 Feeds</name>
 
 	<modules>
-		<module>feedhandler</module>
-		<module>feedhandler-servicemix</module>
-		<module>feedhandler-consumer-servicemix</module>
-		<module>ladok-logdb</module>
+		<module>ladok3atom-reader</module>
+		<module>ladok3atom-event-adapter</module>
+		<module>ladok3-event-distribution</module>
+		<module>ladok3event-logdb-adapter</module>
 	</modules>
 
 	<properties>

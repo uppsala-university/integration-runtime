@@ -6,28 +6,19 @@
 		<artifactId>feedhandler-bundle</artifactId>
 		<version>0.0.1-SNAPSHOT</version>
 	</parent>
-
-	<artifactId>ladok-logdb</artifactId>
+	
+	<artifactId>ladok3-event-distribution</artifactId>
 	<version>${parent.version}</version>
 	<packaging>bundle</packaging>
-
+	
 	<build>
 		<plugins>
 			<plugin>
 				<groupId>org.apache.felix</groupId>
 				<artifactId>maven-bundle-plugin</artifactId>
 				<extensions>true</extensions>
-				<configuration>
-					<instructions>
-						<Bundle-SymbolicName>${project.artifactId}</Bundle-SymbolicName>
-						<Bundle-Description>${project.description}</Bundle-Description>
-						<Import-Package>*,se.uu.its.skutt.ladok3.feeds.dto</Import-Package>
-					</instructions>
-				</configuration>
 			</plugin>
-			
 		</plugins>
 	</build>
-
-
+	
 </project>
