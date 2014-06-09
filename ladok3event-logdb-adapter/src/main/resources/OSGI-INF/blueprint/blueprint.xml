@@ -11,7 +11,7 @@
 			<redeliveryPolicy maximumRedeliveries="-1" redeliveryDelay="5000" logStackTrace="true" />
 		</onException>
 		 
-		<route id="ladok-logdb">
+		<route id="ladok3event-logdb-adapter">
 			<from uri="activemq:ladok3event-logdb?transacted=true" />
 			<setHeader headerName="category">
 				<xpath resultType="java.lang.String">/atom:entry/atom:category/@term</xpath>

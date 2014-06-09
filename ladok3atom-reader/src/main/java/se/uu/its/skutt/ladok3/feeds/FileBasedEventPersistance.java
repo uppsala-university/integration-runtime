@@ -28,7 +28,11 @@ public class FileBasedEventPersistance implements EventPersistance {
 	}
 	
 	@Override
-	public Entry saveEntry(Entry e) {
+	public synchronized Entry saveEntry(Entry e) throws Exception{
+		long current = getCurrentNumber();
+		if (EventUtils.getEventNumber(e) != current + 1) {
+			throw new Exception("Did not expect this message: " + EventUtils.getEventNumber(e));
+		}
 		Properties prop = new Properties();
 		prop.setProperty(PROPERTY, new Long(EventUtils.getEventNumber(e)).toString());
 		try {

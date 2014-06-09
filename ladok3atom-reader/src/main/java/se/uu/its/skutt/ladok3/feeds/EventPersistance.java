@@ -16,7 +16,7 @@ public interface EventPersistance {
 	 * @param e händelse att spara
 	 * @return Den sparade händelsen. Null om inget sparades.
 	 */
-	public abstract Entry saveEntry(Entry e);
+	public abstract Entry saveEntry(Entry e) throws Exception;
 	
 	/**
 	 * Returnerar en siffra som indikerar vilken som är nästa händelse i kön som ska betas av

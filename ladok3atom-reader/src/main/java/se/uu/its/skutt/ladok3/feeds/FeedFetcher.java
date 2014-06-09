@@ -28,7 +28,7 @@ public class FeedFetcher {
 	private String certificateFile = null;
 	private String certificatePwd = null;
 	private Log log = LogFactory.getLog(this.getClass());
-	private static int MAX_ENTRIES_PER_RUN = 1000;
+	private static int MAX_ENTRIES_PER_RUN = 100;
 
 	private Properties properties;
 

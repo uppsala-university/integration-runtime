@@ -1,45 +1,65 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<blueprint
-    xmlns="http://www.osgi.org/xmlns/blueprint/v1.0.0"
-    xmlns:cm="http://aries.apache.org/blueprint/xmlns/blueprint-cm/v1.0.0"
-    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:schemaLocation="http://www.osgi.org/xmlns/blueprint/v1.0.0 http://www.osgi.org/xmlns/blueprint/v1.0.0/blueprint.xsd">
+<blueprint xmlns="http://www.osgi.org/xmlns/blueprint/v1.0.0"
+	xmlns:cm="http://aries.apache.org/blueprint/xmlns/blueprint-cm/v1.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.osgi.org/xmlns/blueprint/v1.0.0 http://www.osgi.org/xmlns/blueprint/v1.0.0/blueprint.xsd">
 
-    <camelContext xmlns="http://camel.apache.org/schema/blueprint">
-        
-        <!-- 
-        	En route som inleds via en timer. Var 5e sekund vaknar timern
-        	och skickar meddelande till eventPersistance, som tar reda på
-        	nästa meddelandenummer att hämta. Anropet går sedan vidare 
-        	till feedFetcher som hämtar en lista av händelser 
-        	( List<Entry> ), splittar dessa och skickar till ändpunkten
-        	direct:distribute
-         -->
-        <route>
-        	<from uri="timer://ladok?fixedRate=true&amp;period=5000&amp;repeatCount=0"/>
-        	<to uri="bean:eventPersistance?method=getNextEventNumber"/>
-        	<to uri="log:log-test?level=INFO"/>
-        	<to uri="bean:feedFetcher?method=getEntries"/>
-        	<split streaming="true">
-        		<simple>${body}</simple>
-        		<to uri="direct:distribute"/>
-        	</split>
-        </route>
-          
-        <!-- 
-        	Sparar meddelandet i loggen via eventPersistance och omvandlar
-        	sedan kroppen till strängform för att undvika problem vid 
-        	JMS-serialiseringen. Därefter sprids meddelandet.
-         -->
-        <route>
-        	<from uri="direct:distribute"/>
-        	<to uri="bean:eventPersistance?method=saveEntry"/>
-        	<convertBodyTo type="java.lang.String"/>
-        	<to uri="activemq:queue:ladok3-event-distribution"/>
-        </route>
-    </camelContext>
-    
+	<bean id="NEW" class="org.apache.camel.spring.spi.SpringTransactionPolicy">
+		<property name="transactionManager" ref="jmsTransactionManager" />
+		<property name="propagationBehaviorName" value="PROPAGATION_REQUIRES_NEW" />
+	</bean>
+
+	<bean id="jmsTransactionManager"
+		class="org.springframework.jms.connection.JmsTransactionManager">
+		<property name="connectionFactory" ref="jmsConnectionFactory" />
+	</bean>
+
+	<bean id="jmsConnectionFactory" class="org.apache.activemq.ActiveMQConnectionFactory">
+		<property name="brokerURL" value="tcp://localhost:61616" />
+	</bean>
+
+	<bean id="activemq" class="org.apache.activemq.camel.component.ActiveMQComponent">
+		<property name="connectionFactory" ref="jmsConnectionFactory" />
+		<property name="transacted" value="true" />
+	</bean>
+
+	<camelContext xmlns="http://camel.apache.org/schema/blueprint">
+
+
+		<!-- En route som inleds via en timer. Var 5e sekund vaknar timern och 
+			skickar meddelande till eventPersistance, som tar reda på nästa meddelandenummer 
+			att hämta. Anropet går sedan vidare till feedFetcher som hämtar en lista 
+			av händelser ( List<Entry> ), splittar dessa och skickar till ändpunkten 
+			direct:distribute -->
+		<route>
+			<!-- Startar ingen ny förrän den gamla är klar. Oklart om försök görs var femte sekund eller fem sekunder efter avslut. -->
+			<from
+				uri="timer://ladok?fixedRate=true&amp;period=5000&amp;repeatCount=0" />
+			<transacted ref="NEW" />
+			<to uri="bean:eventPersistance?method=getNextEventNumber" />
+			<to uri="log:log-test?level=INFO" />
+			<to uri="bean:feedFetcher?method=getEntries" />
+			<split streaming="true" stopOnException="true">
+				<simple>${body}</simple>
+				<to uri="log:hanterar-meddelande?level=INFO" />
+				<to uri="activemq:queue:ladok3-dummy-log" />
+				<to uri="bean:eventPersistance?method=saveEntry" />
+				<convertBodyTo type="java.lang.String" />
+				<to uri="activemq:queue:ladok3-event-distribution" />
+				<delay><constant>1000</constant></delay>
+			</split>
+		</route>
+
+		<!-- Sparar meddelandet i loggen via eventPersistance och omvandlar sedan 
+			kroppen till strängform för att undvika problem vid JMS-serialiseringen. 
+			Därefter läggs meddelandet på distributionskön. -->
+<!-- 		<route>
+
+
+		</route> -->
+	</camelContext>
+
 	<bean id="eventPersistance" class="se.uu.its.skutt.ladok3.feeds.FileBasedEventPersistance" />
-	<bean id="feedFetcher" class="se.uu.its.skutt.ladok3.feeds.FeedFetcher"/>
-	
+	<bean id="feedFetcher" class="se.uu.its.skutt.ladok3.feeds.FeedFetcher" />
+
 </blueprint>
