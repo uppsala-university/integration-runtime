@@ -25,11 +25,11 @@ Håll sedan koll på filen /var/lib/servicemix/log/servicemix.log.
 
 Konsol för servicemix
 =====================
-Kör ssh mot servicemix. Lösenorder är "smx"
+Kör ssh mot servicemix. Lösenordet är "smx"
 
 `$ ssh -p 8101 smx@localhost`
 
-I konsollen kan du t.ex. titta på inkommande kön:
+I konsolen kan du t.ex. titta på inkommande kön:
 
 `activemq:browse --amqurl tcp://localhost:61616 ladok3-event-distribution`
 
@@ -48,8 +48,11 @@ Om du vill, se följande adresser:
 
 	(Hawtio i korthet...) 
 	 
-	features:addurl mvn:io.hawt/hawtio-karaf/1.0/xml/features
-	features:install hawtio
+	`features:addurl mvn:io.hawt/hawtio-karaf/1.4.4/xml/features`
+	
+	`features:install hawtio-core`
+	
+	Gå sedan till <http://localhost:8181/hawtio>
 	
 Installera klientcertifikat för Ladok3
 ================================
