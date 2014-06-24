@@ -13,7 +13,7 @@ export PATH=$JAVA_HOME/bin:$PATH
 export KARAF_USER=smx
 export KARAF_DATA=/var/lib/servicemix
 
-DAEMON=/opt/servicemix/apache-servicemix-4.5.3/bin/servicemix
+DAEMON=/opt/servicemix/apache-servicemix-__VERSION/bin/servicemix
 LOGFILE=//opt/servicemix/servicemix_start.log
 NAME=servicemix
 DESC=servicemix

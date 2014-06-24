@@ -1,6 +1,6 @@
 Summary:     	ServiceMix RPM
 Name:           apache-servicemix
-Version:       	4.5.3
+Version:       	__VERSION
 Release:        0
 License:        none
 Source0:       	%{name}-%{version}.tar.gz
