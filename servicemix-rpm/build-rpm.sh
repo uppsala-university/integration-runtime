@@ -1,7 +1,7 @@
 #!/bin/bash
 
 PKG="apache-servicemix"
-VERSION="5.1.0"
+VERSION="4.5.3"
 TARBALL="$PKG-$VERSION.tar.gz"
 
 echo "Building RPM for $PKG-$VERSION"
