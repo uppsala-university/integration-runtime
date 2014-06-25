@@ -4,7 +4,7 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://www.osgi.org/xmlns/blueprint/v1.0.0 http://www.osgi.org/xmlns/blueprint/v1.0.0/blueprint.xsd">
 
-	<camelContext id="ladok-logdb-context" xmlns="http://camel.apache.org/schema/blueprint" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:ui="http://schemas.ladok.se/utbildningsinformation">
+	<camelContext xmlns="http://camel.apache.org/schema/blueprint" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:ui="http://schemas.ladok.se/utbildningsinformation">
 	
 		<onException>
 			<exception>java.lang.Exception</exception>
@@ -12,7 +12,7 @@
 		</onException>
 		 
 		<route id="ladok3event-logdb-adapter">
-			<from uri="activemq:ladok3event-logdb?transacted=true" />
+			<from uri="activemq:queue:ladok3event-logdb?transacted=true" />
 			<setHeader headerName="category">
 				<xpath resultType="java.lang.String">/atom:entry/atom:category/@term</xpath>
 			</setHeader>
@@ -32,6 +32,7 @@
 					<to uri="log:ladok-logdb?level=INFO" />
 				</when>
 				<otherwise>
+					<to uri="bean:unknownEventLogger?method=dumpUnknownEntry" />
 					<setBody>
 						<simple>Unknown event ${header.category}</simple>
 					</setBody>
@@ -65,5 +66,7 @@
 		<property name="transactionManager" ref="jmsTransactionManager" />
 		<property name="propagationBehaviorName" value="PROPAGATION_REQUIRES_NEW" />
 	</bean>
+	
+	<bean id="unknownEventLogger" class="se.uu.its.skutt.ladok3.feeds.UnknownEventLogger" />
 	
 </blueprint>
