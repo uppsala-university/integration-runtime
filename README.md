@@ -50,7 +50,7 @@ Om du vill, se följande adresser:
 	 
 	`features:addurl mvn:io.hawt/hawtio-karaf/1.4.4/xml/features`
 	
-	`features:install hawtio-core`
+	`features:install hawtio`
 	
 	Gå sedan till <http://localhost:8181/hawtio>
 	
@@ -87,4 +87,4 @@ av den virtuella maskinen.
 Deploya Feedhandler i ICKE-vagrant-miljö
 ========================================
 
-Samma jar-filer som ovan men de ska kopieras in i `/opt/servicemix/apache-servicemix-4.5.3/deploy`
+Samma jar-filer som ovan men de ska kopieras in i `/opt/servicemix/apache-servicemix-5.1.0/deploy`

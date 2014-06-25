@@ -11,27 +11,25 @@ class servicemix {
    		ensure	=> directory
    	}
 
-   	file { '/opt/rpm/apache-servicemix-4.5.3-0.noarch.rpm':
-   		source 		=> 'puppet:///modules/servicemix/apache-servicemix-4.5.3-0.noarch.rpm',
+   	file { '/opt/rpm/apache-servicemix-5.1.0-0.noarch.rpm':
+   		source 		=> 'puppet:///modules/servicemix/apache-servicemix-5.1.0-0.noarch.rpm',
    		require		=> File['/opt/rpm']
    	}
 
 	package { 'apache-servicemix':
-		require 	=> File['/opt/rpm/apache-servicemix-4.5.3-0.noarch.rpm'],
+		require 	=> File['/opt/rpm/apache-servicemix-5.1.0-0.noarch.rpm'],
 		provider 	=> 'rpm',
-		source 		=> '/opt/rpm/apache-servicemix-4.5.3-0.noarch.rpm'
+		source 		=> '/opt/rpm/apache-servicemix-5.1.0-0.noarch.rpm'
 	}
 
-	service { 'apache-servicemix':
-		enable		=>	true,
-		ensure 		=> running,
+	file { '/opt/servicemix/apache-servicemix-5.1.0/etc/org.apache.karaf.features.cfg':
+		source		=> 'puppet:///modules/servicemix/org.apache.karaf.features.cfg',
 		require		=> Package['apache-servicemix']
 	}
 
-	file { '/opt/servicemix/apache-servicemix-4.5.3/deploy/abdera-1.1.3-feature.xml':
+	file { '/opt/servicemix/apache-servicemix-5.1.0/deploy/abdera-1.1.3-feature.xml':
    		source 		=> 'puppet:///modules/servicemix/abdera-1.1.3-feature.xml',
    		require		=> Service['apache-servicemix']
-
    	}
 	
 	file { '/opt/servicemix/smx-relink.sh': 
@@ -39,6 +37,12 @@ class servicemix {
 		mode		=> 0755,
 		owner		=> root,
 		require		=> Package['apache-servicemix'],
+	}
+
+	service { 'apache-servicemix':
+		enable		=>	true,
+		ensure 		=> running,
+		require		=> Package['apache-servicemix']
 	}
 
 }

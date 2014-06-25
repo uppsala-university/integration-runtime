@@ -1,9 +1,9 @@
 Summary:     	ServiceMix RPM
 Name:           apache-servicemix
-Version:       	4.5.3
+Version:       	5.1.0
 Release:        0
 License:        none
-Source0:       	%{name}-%{version}.tar.gz
+Source0:       	%{name}-%{version}.zip
 Source1:        %{name}.init
 BuildArch:      noarch
 BuildRoot:      %{_tmppath}/%{name}-build

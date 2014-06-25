@@ -2,6 +2,7 @@
 <blueprint xmlns="http://www.osgi.org/xmlns/blueprint/v1.0.0"
 	xmlns:cm="http://aries.apache.org/blueprint/xmlns/blueprint-cm/v1.0.0"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:osgi="http://www.springframework.org/schema/osgi"
 	xsi:schemaLocation="http://www.osgi.org/xmlns/blueprint/v1.0.0 http://www.osgi.org/xmlns/blueprint/v1.0.0/blueprint.xsd">
 
 	<bean id="NEW" class="org.apache.camel.spring.spi.SpringTransactionPolicy">
@@ -16,13 +17,17 @@
 
 	<bean id="jmsConnectionFactory" class="org.apache.activemq.ActiveMQConnectionFactory">
 		<property name="brokerURL" value="tcp://localhost:61616" />
+        <property name="userName" value="smx" />
+        <property name="password" value="smx" />
 	</bean>
 
 	<bean id="activemq" class="org.apache.activemq.camel.component.ActiveMQComponent">
 		<property name="connectionFactory" ref="jmsConnectionFactory" />
 		<property name="transacted" value="true" />
 	</bean>
+<!--    <service ref="activemq" interface="org.apache.camel.Component"/>
 
+   <osgi:reference id="activemq" interface="org.apache.camel.Component" /> -->
 	<camelContext xmlns="http://camel.apache.org/schema/blueprint">
 
 
@@ -46,7 +51,7 @@
 				<to uri="bean:eventPersistance?method=saveEntry" />
 				<convertBodyTo type="java.lang.String" />
 				<to uri="activemq:queue:ladok3-event-distribution" />
-				<delay><constant>1000</constant></delay>
+<!--				<delay><constant>1000</constant></delay> -->
 			</split>
 		</route>
 

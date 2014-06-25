@@ -1,14 +1,14 @@
 #!/bin/bash
 
 PKG="apache-servicemix"
-VERSION="4.5.3"
-TARBALL="$PKG-$VERSION.tar.gz"
+VERSION="5.1.0"
+TARBALL="$PKG-$VERSION.zip"
 
 echo "Building RPM for $PKG-$VERSION"
 
 if [ ! -f $TARBALL ]
 then
-	curl http://www.eu.apache.org/dist/servicemix/servicemix-4/$VERSION/$TARBALL > $TARBALL
+	curl http://www.eu.apache.org/dist/servicemix/servicemix-5/$VERSION/$TARBALL > $TARBALL
 fi
 
 sed -i.bak s/__PKG/${PKG}/g apache-servicemix.spec

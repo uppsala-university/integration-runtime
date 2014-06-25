@@ -31,7 +31,7 @@
 							com.ctc.wstx.stax,
 							se.uu.its.skutt.ladok3.feeds;version="[0.0,1]",
 							se.uu.its.skutt.ladok3.feeds.dto;version="[0.0,1]",
-							org.apache.camel.spring.spi;version="[2.10,2.12]",
+							org.apache.camel.spring.spi;version="[2.10,2.14]",
 							org.springframework.jms.connection,
 							org.apache.activemq,
 							org.apache.activemq.camel.component

@@ -7,7 +7,7 @@ node "centos.dev.uu.se" {
 	#include neo4j
 	
 	servicemix::smx-relink { 'deploy' :
-		src		=> '/opt/servicemix/apache-servicemix-4.5.3/deploy',
+		src		=> '/opt/servicemix/apache-servicemix-5.1.0/deploy',
 		dest	=> '/vagrant/smx/deploy'
 	}
 	
