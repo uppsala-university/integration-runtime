@@ -42,7 +42,8 @@ class servicemix {
 	service { 'apache-servicemix':
 		enable		=>	true,
 		ensure 		=> running,
-		require		=> Package['apache-servicemix']
+		require		=> [Package['java-1.7.0-openjdk'],
+				    Package['apache-servicemix']]
 	}
 
 }
