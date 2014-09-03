@@ -60,7 +60,7 @@ Kopiera ditt klientcertifikat för Ladok3 till katalogen `feedhandler/src/main/r
 
 Redigera filen `feedhandler/src/main/resources/feedfetcher.properties`. Skriv in namnet på din certifikatfil och lösenordet.
 
-Deploya Feedhander i vagrant-miljö
+Deploya händelsehanteraren i vagrant-miljö
 ==================================
 
 Från den här katalogen, kör följande för att bygga all kod. Detta är ett "maven multi module project"
@@ -73,13 +73,15 @@ titt i filen provision/manifests/default.pp indikerar att puppet kommer länka o
 att den hamnar på den delade disken mellan vagrant-maskinen och värd-maskinen. Detta gör det smidigare
 att utveckla. 
 
-`$ cp feedhandler/target/feedhandler-0.0.1-SNAPSHOT.jar smx/deploy/`
+`$ cp ladok3atom-reader/target/ladok3atom-reader-0.0.1-SNAPSHOT.jar smx/deploy/`
 
-`$ cp feedhandler-servicemix/target/feedhandler-servicemix-0.0.1-SNAPSHOT.jar smx/deploy/`
+`$ cp ladok3atom-event-adapter/target/ladok3atom-event-adapter-0.0.1-SNAPSHOT.jar smx/deploy/`
 
 Deploya även en konsument om du vill det
 
-`$ cp feedhandler-consumer-servicemix/target/feedhandler-consumer-servicemix-0.0.1-SNAPSHOT.jar smx/deploy/`
+`$ cp ladok3-event-distribution/target/ladok3-event-distribution-0.0.1-SNAPSHOT.jar smx/deploy/`
+
+`$ cp lladok3event-logdb-adapter/target/ladok3event-logdb-adapter-0.0.1-SNAPSHOT.jar smx/deploy/`
 
 Din deploy-katalog på den här delade disken kommer överleva omstarter och ominstallationer (vagrant destroy) 
 av den virtuella maskinen.
