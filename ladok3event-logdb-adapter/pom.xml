@@ -2,14 +2,15 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<parent>
-		<groupId>se.uu.its.skutt.ladok3</groupId>
-		<artifactId>feedhandler-bundle</artifactId>
+		<groupId>se.uu.its.ladok</groupId>
+		<artifactId>ladok3-event</artifactId>
 		<version>0.0.1-SNAPSHOT</version>
 	</parent>
 
 	<artifactId>ladok3event-logdb-adapter</artifactId>
 	<version>${parent.version}</version>
 	<packaging>bundle</packaging>
+	<name>Ladok 3 Event LogDB Adapter</name>
 
 	<build>
 		<plugins>
@@ -21,7 +22,7 @@
 					<instructions>
 						<Bundle-SymbolicName>${project.artifactId}</Bundle-SymbolicName>
 						<Bundle-Description>${project.description}</Bundle-Description>
-						<Import-Package>*,se.uu.its.skutt.ladok3.feeds.dto</Import-Package>
+						<Import-Package>*,se.uu.its.ladok.feeds.dto</Import-Package>
 					</instructions>
 				</configuration>
 			</plugin>

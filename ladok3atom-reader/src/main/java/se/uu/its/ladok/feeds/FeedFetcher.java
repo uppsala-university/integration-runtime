@@ -1,4 +1,4 @@
-package se.uu.its.skutt.ladok3.feeds;
+package se.uu.its.ladok.feeds;
 
 import java.io.IOException;
 import java.io.InputStream;

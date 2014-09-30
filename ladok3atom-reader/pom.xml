@@ -2,14 +2,15 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<parent>
-		<groupId>se.uu.its.skutt.ladok3</groupId>
-		<artifactId>feedhandler-bundle</artifactId>
+		<groupId>se.uu.its.ladok</groupId>
+		<artifactId>ladok3-event</artifactId>
 		<version>0.0.1-SNAPSHOT</version>
 	</parent>
 
 	<artifactId>ladok3atom-reader</artifactId>
 	<version>${parent.version}</version>
 	<packaging>bundle</packaging>
+	<name>Ladok 3 Atom Reader</name>
 
 	<dependencies>
 		<dependency>
@@ -45,7 +46,7 @@
 					<instructions>
 						<Bundle-SymbolicName>${project.artifactId}</Bundle-SymbolicName>
 						<Bundle-Description>${project.description}</Bundle-Description>
-						<Export-package>se.uu.its.skutt.ladok3.feeds,se.uu.its.skutt.ladok3.feeds.dto</Export-package>
+						<Export-package>se.uu.its.ladok.feeds,se.uu.its.ladok.feeds.dto</Export-package>
 						<Import-package>org.apache.abdera,org.apache.abdera.parser.stax,org.apache.abdera.model</Import-package>
 					</instructions>
 				</configuration>

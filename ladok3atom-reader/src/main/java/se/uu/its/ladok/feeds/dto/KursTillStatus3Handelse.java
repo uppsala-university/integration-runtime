@@ -1,4 +1,4 @@
-package se.uu.its.skutt.ladok3.feeds.dto;
+package se.uu.its.ladok.feeds.dto;
 
 import java.util.Date;
 

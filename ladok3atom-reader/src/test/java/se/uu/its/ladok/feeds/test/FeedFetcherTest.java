@@ -1,11 +1,12 @@
-package se.uu.its.skutt.ladok3.feeds.test;
+package se.uu.its.ladok.feeds.test;
 
 import java.util.List;
 
 import org.apache.abdera.model.Entry;
 import org.junit.Test;
-import se.uu.its.skutt.ladok3.feeds.EventUtils;
-import se.uu.its.skutt.ladok3.feeds.FeedFetcher;
+
+import se.uu.its.ladok.feeds.EventUtils;
+import se.uu.its.ladok.feeds.FeedFetcher;
 
 public class FeedFetcherTest {
 	

@@ -11,10 +11,12 @@
 <!-- 	            <transform><simple>Processing from Ladok: ${header.ladokEventNumber}</simple></transform> -->
             <multicast stopOnException="true">
 	            <to uri="log:feedhandler-consumer-servicemix" />
-	            <to uri="activemq:queue:ladok3event-akka" />
-	            <to uri="activemq:queue:ladok3event-sp" />
-	            <to uri="activemq:queue:ladok3event-sesam" />
-	            <to uri="activemq:queue:ladok3event-logdb" />
+<!--
+ 	            <to uri="activemq:queue:ladok3event-system-A" />
+	            <to uri="activemq:queue:ladok3event-system-B" />
+	            <to uri="activemq:queue:ladok3event-system-C" />
+ -->
+ 	            <to uri="activemq:queue:ladok3event-logdb" />
             </multicast>
         </route>
     </camelContext>

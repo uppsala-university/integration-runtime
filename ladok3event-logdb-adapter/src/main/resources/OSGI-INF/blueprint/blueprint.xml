@@ -25,7 +25,7 @@
 					</setBody>
 					<!-- Konvertera till javakod via JAXB -->
 					<unmarshal>
-      					<jaxb prettyPrint="true" contextPath="se.uu.its.skutt.ladok3.feeds.dto"/>
+      					<jaxb prettyPrint="true" contextPath="se.uu.its.ladok.feeds.dto"/>
     				</unmarshal>
     				 
 					<!--  Nu har vi ett KursTillStatus3Handelse-objekt. Notera "BodyType" i loggen -->
@@ -67,6 +67,6 @@
 		<property name="propagationBehaviorName" value="PROPAGATION_REQUIRES_NEW" />
 	</bean>
 	
-	<bean id="unknownEventLogger" class="se.uu.its.skutt.ladok3.feeds.UnknownEventLogger" />
+	<bean id="unknownEventLogger" class="se.uu.its.ladok.feeds.UnknownEventLogger" />
 	
 </blueprint>

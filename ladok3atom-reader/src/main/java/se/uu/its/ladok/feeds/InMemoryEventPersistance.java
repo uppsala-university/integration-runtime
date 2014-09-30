@@ -1,4 +1,4 @@
-package se.uu.its.skutt.ladok3.feeds;
+package se.uu.its.ladok.feeds;
 
 import org.apache.abdera.model.Entry;
 import org.apache.commons.logging.Log;
