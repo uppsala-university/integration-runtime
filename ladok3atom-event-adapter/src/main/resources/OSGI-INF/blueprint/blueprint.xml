@@ -64,7 +64,7 @@
 		</route> -->
 	</camelContext>
 
-	<bean id="eventPersistance" class="se.uu.its.ladok.feeds.FileBasedEventPersistance" />
-	<bean id="feedFetcher" class="se.uu.its.ladok.feeds.FeedFetcher" />
+	<bean id="eventPersistance" class="se.sunet.ati.ladok.feeds.FileBasedEventPersistance" />
+	<bean id="feedFetcher" class="se.sunet.ati.ladok.feeds.FeedFetcher" />
 
 </blueprint>
