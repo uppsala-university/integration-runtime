@@ -10,7 +10,6 @@
 	<name>Ladok 3 Feeds</name>
 
 	<modules>
-		<module>ladok3atom-reader</module>
 		<module>ladok3atom-event-adapter</module>
 		<module>ladok3-event-distribution</module>
 		<module>ladok3event-logdb-adapter</module>
