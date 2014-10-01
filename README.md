@@ -23,13 +23,13 @@ Starta servicmix i den virtuella miljön
 
 Håll sedan koll på filen /var/lib/servicemix/log/servicemix.log. 
 
-Konsol för servicemix
-=====================
+Konsoll för servicemix
+======================
 Kör ssh mot servicemix. Lösenordet är "smx"
 
 `$ ssh -p 8101 smx@localhost`
 
-I konsolen kan du t.ex. titta på inkommande kön:
+I konsollen kan du t.ex. titta på inkommande kön:
 
 `activemq:browse --amqurl tcp://localhost:61616 ladok3-event-distribution`
 
@@ -38,8 +38,8 @@ eller följa loggen:
 `log:tail`
 
 
-Installera webkonsoll för ActiveMQ samt Hawtio
-==============================================
+Installera webbkonsoll för ActiveMQ samt Hawtio
+===============================================
 
 Om du vill, se följande adresser:
 
@@ -60,8 +60,11 @@ Kopiera ditt klientcertifikat för Ladok3 till katalogen `feedhandler/src/main/r
 
 Redigera filen `feedhandler/src/main/resources/feedfetcher.properties`. Skriv in namnet på din certifikatfil och lösenordet.
 
-Deploya händelsehanteraren i vagrant-miljö
-==================================
+Driftsätt händelsehanteraren i vagrant-miljö
+============================================
+För att kunna bygga projekten måste projektet https://github.com/uppsala-university/ladok3 finnas
+installerat i det lokala Maven-biblioteket. Hämta från GitHub och följ bygg och 
+installationbeskrivningen.
 
 Från den här katalogen, kör följande för att bygga all kod. Detta är ett "maven multi module project"
 
