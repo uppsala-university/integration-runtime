@@ -19,7 +19,9 @@ Starta servicmix i den virtuella miljön
 
 `$ vagrant ssh`
 
-`$ sudo service apache-servicemix start`
+Kontrollera att tjänsten servicemix är startad
+
+`$ sudo service apache-servicemix status`
 
 Håll sedan koll på filen /var/lib/servicemix/log/servicemix.log. 
 
@@ -56,19 +58,23 @@ Om du vill, se följande adresser:
 	
 Installera klientcertifikat för Ladok3
 ================================
-Kopiera ditt klientcertifikat för Ladok3 till katalogen `feedhandler/src/main/resources/`. Certifikatet ska vara på PKCS 12-format.
+Klienten som används för att hämta händelser från Ladok's ATOM-gränssnitt finns i biblioteket <https://github.com/uppsala-university/ladok3>. 
 
-Redigera filen `feedhandler/src/main/resources/feedfetcher.properties`. Skriv in namnet på din certifikatfil och lösenordet.
+Kopiera klientcertifik för Ladok3 till katalogen `ladok3atom-client/src/main/resources/`. Certifikatet ska vara på PKCS 12-format.
+
+I `ladok3atom-client/src/main/resources` finns en exempelfil för ur egenskaperna ska redigeras. Använd den genom att döpa om den
+
+`mv feedfetcher.properties.sample feedfetcher.properties`
+
+Redigera sedan filen `feedhandler/src/main/resources/feedfetcher.properties` och skriv in namnet på certifikatfil och lösenord.
 
 Driftsätt händelsehanteraren i vagrant-miljö
 ============================================
-För att kunna bygga projekten måste projektet https://github.com/uppsala-university/ladok3 finnas
-installerat i det lokala Maven-biblioteket. Hämta från GitHub och följ bygg och 
-installationbeskrivningen.
-
-Från den här katalogen, kör följande för att bygga all kod. Detta är ett "maven multi module project"
+Bygg källkoden i `ladok3-event`, genom 
 
 `$ mvn clean package`
+
+Detta bygger ett s.k. "maven multi module project".
 
 Nu går det att deploya till servicemix. Det görs genom att kopiera filer till deploy-katalogen som
 ligger under "smx/deploy" relativt denna fil. Detta är en specialare för vagrant-miljöerna. En närmare
@@ -76,20 +82,25 @@ titt i filen provision/manifests/default.pp indikerar att puppet kommer länka o
 att den hamnar på den delade disken mellan vagrant-maskinen och värd-maskinen. Detta gör det smidigare
 att utveckla. 
 
-`$ cp ladok3atom-reader/target/ladok3atom-reader-0.0.1-SNAPSHOT.jar smx/deploy/`
+Kopiera först klienten från `ladok3`
+
+`$ cp ladok3atom-client/target/ladok3atom-reader-0.0.1-SNAPSHOT.jar smx/deploy/`
+
+Driftsätt sedan integrationsadaptern som exekverar klienten från `ladok3-event`
 
 `$ cp ladok3atom-event-adapter/target/ladok3atom-event-adapter-0.0.1-SNAPSHOT.jar smx/deploy/`
 
-Deploya även en konsument om du vill det
+Därefter driftsätts den integrationsmodul som distribuerar händelserna till de system som ska prenumerera på händelserna
 
 `$ cp ladok3-event-distribution/target/ladok3-event-distribution-0.0.1-SNAPSHOT.jar smx/deploy/`
 
-`$ cp lladok3event-logdb-adapter/target/ladok3event-logdb-adapter-0.0.1-SNAPSHOT.jar smx/deploy/`
+Driftsätt sedan en konsument
 
-Din deploy-katalog på den här delade disken kommer överleva omstarter och ominstallationer (vagrant destroy) 
-av den virtuella maskinen.
+`$ cp ladok3event-logdb-adapter/target/ladok3event-logdb-adapter-0.0.1-SNAPSHOT.jar smx/deploy/`
 
-Deploya Feedhandler i ICKE-vagrant-miljö
+Deploy-katalog på den delade disken kommer överleva omstarter och ominstallationer (vagrant destroy) av den virtuella maskinen.
+
+Driftsättning i ICKE-vagrant-miljö
 ========================================
 
 Samma jar-filer som ovan men de ska kopieras in i `/opt/servicemix/apache-servicemix-5.1.0/deploy`
