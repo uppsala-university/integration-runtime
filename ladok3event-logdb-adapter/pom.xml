@@ -22,7 +22,7 @@
 					<instructions>
 						<Bundle-SymbolicName>${project.artifactId}</Bundle-SymbolicName>
 						<Bundle-Description>${project.description}</Bundle-Description>
-						<Import-Package>*,se.sunet.ati.ladok.feeds.dto</Import-Package>
+						<Import-Package>*,se.sunet.ati.ladok.atom.dto</Import-Package>
 					</instructions>
 				</configuration>
 			</plugin>
