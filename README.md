@@ -60,13 +60,13 @@ Installera klientcertifikat för Ladok3
 ================================
 Klienten som används för att hämta händelser från Ladok's ATOM-gränssnitt finns i biblioteket <https://github.com/uppsala-university/ladok3>. 
 
-Kopiera klientcertifik för Ladok3 till katalogen `ladok3atom-client/src/main/resources/`. Certifikatet ska vara på PKCS 12-format.
+Kopiera klientcertifikat för Ladok3 till katalogen `ladok3atom-client/src/main/resources/`. Certifikatet ska vara på PKCS 12-format.
 
-I `ladok3atom-client/src/main/resources` finns en exempelfil för ur egenskaperna ska redigeras. Använd den genom att döpa om den
+I `ladok3atom-client/src/main/resources` finns en exempelfil för fordrade egenskaper. Använd den genom att döpa om den
 
-`mv feedfetcher.properties.sample feedfetcher.properties`
+`mv atomclient.properties.sample atomclient.properties`
 
-Redigera sedan filen `feedhandler/src/main/resources/feedfetcher.properties` och skriv in namnet på certifikatfil och lösenord.
+Redigera sedan filen `ladok3atom-client/src/main/resources/atomclient.properties` för att innehålla rätt namn på certifikatfil och lösenord.
 
 Driftsätt händelsehanteraren i vagrant-miljö
 ============================================
