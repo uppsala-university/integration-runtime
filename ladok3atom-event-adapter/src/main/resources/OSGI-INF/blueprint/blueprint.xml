@@ -31,10 +31,10 @@
 	<camelContext xmlns="http://camel.apache.org/schema/blueprint">
 
 
-		<!-- En route som inleds via en timer. Var 5e sekund vaknar timern och 
-			skickar meddelande till eventPersistance, som tar reda på nästa meddelandenummer 
-			att hämta. Anropet går sedan vidare till feedFetcher som hämtar en lista 
-			av händelser ( List<Entry> ), splittar dessa och skickar till ändpunkten 
+		<!-- En route som inleds via en timer. Var 5e sekund vaknar timern och
+			skickar meddelande till eventPersistance, som tar reda på nästa meddelandenummer
+			att hämta. Anropet går sedan vidare till feedFetcher som hämtar en lista
+			av händelser ( List<Entry> ), splittar dessa och skickar till ändpunkten
 			direct:distribute -->
 		<route>
 			<!-- Startar ingen ny förrän den gamla är klar. Oklart om försök görs var femte sekund eller fem sekunder efter avslut. -->
@@ -43,7 +43,7 @@
 			<transacted ref="NEW" />
 			<to uri="bean:eventPersistance?method=getNextEventNumber" />
 			<to uri="log:log-test?level=INFO" />
-			<to uri="bean:feedFetcher?method=getEntries" />
+			<to uri="bean:atomClient?method=getEntries" />
 			<split streaming="true" stopOnException="true">
 				<simple>${body}</simple>
 				<to uri="log:hanterar-meddelande?level=INFO" />
@@ -51,12 +51,12 @@
 				<to uri="bean:eventPersistance?method=saveEntry" />
 				<convertBodyTo type="java.lang.String" />
 				<to uri="activemq:queue:ladok3-event-distribution" />
- 				<!--<delay><constant>1000</constant></delay> --> 
+ 				<!--<delay><constant>1000</constant></delay> -->
 			</split>
 		</route>
 
-		<!-- Sparar meddelandet i loggen via eventPersistance och omvandlar sedan 
-			kroppen till strängform för att undvika problem vid JMS-serialiseringen. 
+		<!-- Sparar meddelandet i loggen via eventPersistance och omvandlar sedan
+			kroppen till strängform för att undvika problem vid JMS-serialiseringen.
 			Därefter läggs meddelandet på distributionskön. -->
 <!-- 		<route>
 
@@ -65,6 +65,6 @@
 	</camelContext>
 
 	<bean id="eventPersistance" class="se.sunet.ati.ladok.atom.FileBasedEventPersistance" />
-	<bean id="feedFetcher" class="se.sunet.ati.ladok.atom.AtomClient" />
+	<bean id="atomClient" class="se.sunet.ati.ladok.atom.AtomClient" />
 
 </blueprint>
