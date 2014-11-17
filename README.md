@@ -104,3 +104,4 @@ Driftsättning i ICKE-vagrant-miljö
 ========================================
 
 Samma jar-filer som ovan men de ska kopieras in i `/opt/servicemix/apache-servicemix-5.1.2/deploy`
+
