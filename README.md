@@ -103,4 +103,4 @@ Deploy-katalog på den delade disken kommer överleva omstarter och ominstallati
 Driftsättning i ICKE-vagrant-miljö
 ========================================
 
-Samma jar-filer som ovan men de ska kopieras in i `/opt/servicemix/apache-servicemix-5.1.0/deploy`
+Samma jar-filer som ovan men de ska kopieras in i `/opt/servicemix/apache-servicemix-5.1.2/deploy`
