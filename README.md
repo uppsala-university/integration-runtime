@@ -23,7 +23,7 @@ Kontrollera att tjänsten servicemix är startad
 
 `$ sudo service apache-servicemix status`
 
-Håll sedan koll på filen /var/lib/servicemix/log/servicemix.log. 
+Håll sedan koll på filen /var/lib/servicemix/log/servicemix.log.
 
 Konsoll för servicemix
 ======================
@@ -48,17 +48,17 @@ Om du vill, se följande adresser:
 * <http://marcelojabali.blogspot.se/2011/08/how-to-enable-activemq-web-console-on.html>
 * <http://hawt.io/getstarted/index.html>
 
-	(Hawtio i korthet...) 
-	 
+	(Hawtio i korthet...)
+
 	`features:addurl mvn:io.hawt/hawtio-karaf/1.4.4/xml/features`
-	
+
 	`features:install hawtio`
-	
+
 	Gå sedan till <http://localhost:8181/hawtio>
-	
+
 Installera klientcertifikat för Ladok3
 ================================
-Klienten som används för att hämta händelser från Ladok's ATOM-gränssnitt finns i biblioteket <https://github.com/uppsala-university/ladok3>. 
+Klienten som används för att hämta händelser från Ladok's ATOM-gränssnitt finns i biblioteket <https://github.com/uppsala-university/ladok3>.
 
 Kopiera klientcertifikat för Ladok3 till katalogen `ladok3atom-client/src/main/resources/`. Certifikatet ska vara på PKCS 12-format.
 
@@ -70,7 +70,7 @@ Redigera sedan filen `ladok3atom-client/src/main/resources/atomclient.properties
 
 Driftsätt händelsehanteraren i vagrant-miljö
 ============================================
-Bygg källkoden i `ladok3-event`, genom 
+Bygg källkoden i `ladok3-event`, genom
 
 `$ mvn clean package`
 
@@ -78,9 +78,10 @@ Detta bygger ett s.k. "maven multi module project".
 
 Nu går det att deploya till servicemix. Det görs genom att kopiera filer till deploy-katalogen som
 ligger under "smx/deploy" relativt denna fil. Detta är en specialare för vagrant-miljöerna. En närmare
-titt i filen provision/manifests/default.pp indikerar att puppet kommer länka om deploy-katalogen så 
+titt i filen provision/manifests/default.pp indikerar att puppet kommer länka om deploy-katalogen så
 att den hamnar på den delade disken mellan vagrant-maskinen och värd-maskinen. Detta gör det smidigare
-att utveckla. 
+att utveckla. Noterbart är att "hotdeploy" inte fungerar eftersom att inotify inte kan hantera vboxfs.
+Det innebär att varje fil som driftsätts till deploy-katalogen måste touchas inifrån gästsystemet.
 
 Kopiera först klienten från `ladok3`
 
@@ -104,4 +105,3 @@ Driftsättning i ICKE-vagrant-miljö
 ========================================
 
 Samma jar-filer som ovan men de ska kopieras in i `/opt/servicemix/apache-servicemix-5.1.2/deploy`
-
