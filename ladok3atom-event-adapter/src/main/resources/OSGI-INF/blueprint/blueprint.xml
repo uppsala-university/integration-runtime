@@ -41,7 +41,7 @@
 			<from
 				uri="timer://ladok?fixedRate=true&amp;period=5000&amp;repeatCount=0" />
 			<transacted ref="NEW" />
-			<to uri="bean:eventPersistance?method=getNextEventNumber" />
+			<to uri="bean:eventPersistance?method=getLastReadEntryId" />
 			<to uri="log:log-test?level=INFO" />
 			<to uri="bean:atomClient?method=getEntries" />
 			<split streaming="true" stopOnException="true">
