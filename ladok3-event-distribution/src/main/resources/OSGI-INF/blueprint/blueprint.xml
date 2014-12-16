@@ -10,13 +10,15 @@
             <from uri="activemq:queue:ladok3-event-distribution" />
 <!-- 	            <transform><simple>Processing from Ladok: ${header.ladokEventNumber}</simple></transform> -->
             <multicast stopOnException="true">
-	            <to uri="log:feedhandler-consumer-servicemix" />
-<!--
- 	            <to uri="activemq:queue:ladok3event-system-A" />
-	            <to uri="activemq:queue:ladok3event-system-B" />
-	            <to uri="activemq:queue:ladok3event-system-C" />
- -->
- 	            <to uri="activemq:queue:ladok3event-logdb" />
+            	<pipeline>
+            		<filter>
+            			<xpath>/entry/content/*[local-name() = 'AvbrottHandelse' and namespace-uri() = 'http://schemas.ladok.se/studiedeltagande']</xpath>
+	            		<to uri="log:feedhandler-consumer-servicemix" />
+            		</filter>
+            	</pipeline>
+            	<pipeline>
+ 	            	<to uri="activemq:queue:ladok3event-logdb" />
+ 	            </pipeline>
             </multicast>
         </route>
     </camelContext>
