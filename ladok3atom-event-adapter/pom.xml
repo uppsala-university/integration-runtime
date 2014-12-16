@@ -31,7 +31,6 @@
 							org.osgi.service.blueprint;version="[1.0.0,2.0.0]",
 							com.ctc.wstx.stax,
 							se.sunet.ati.ladok.atom;version="[0.0,1]",
-							se.sunet.ati.ladok.atom.dto;version="[0.0,1]",
 							org.apache.camel.spring.spi;version="[2.10,2.14]",
 							org.springframework.jms.connection,
 							org.apache.activemq,
