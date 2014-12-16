@@ -50,11 +50,10 @@ Om du vill, se följande adresser:
 
 	(Hawtio i korthet...)
 
-	`features:addurl mvn:io.hawt/hawtio-karaf/1.4.4/xml/features`
-
+	`features:chooseurl hawtio 1.4.37`
 	`features:install hawtio`
 
-	Gå sedan till <http://localhost:8181/hawtio>
+	Gå sedan till <http://localhost:8181/hawtio> oc använd smx/smx för inloggning.
 
 Installera klientcertifikat för Ladok3
 ================================
