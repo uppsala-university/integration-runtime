@@ -10,7 +10,9 @@
     				xmlns:atom="http://www.w3.org/2005/Atom">
         <route>
             <from uri="activemq:queue:ladok3-event-distribution" />
-<!-- 	            <transform><simple>Processing from Ladok: ${header.ladokEventNumber}</simple></transform> -->
+<!-- This simple transform is not tested.
+            <to uri="xslt:se/uu/its/ladok3/atom/atomwash.xsl"/>
+-->
             <multicast stopOnException="true">
             	<pipeline>
             		<filter>
