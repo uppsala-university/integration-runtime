@@ -12,8 +12,11 @@
             <multicast stopOnException="true">
             	<pipeline>
             		<filter>
+            		    <!-- 
             			<xpath>/entry/content/*[local-name() = 'AvbrottHandelse' and namespace-uri() = 'http://schemas.ladok.se/studiedeltagande']</xpath>
-	            		<to uri="log:feedhandler-consumer-servicemix" />
+            			-->
+            			<xpath logNamespaces="true">/</xpath>
+	            		<to uri="activemq:queue:ladok3event-testreceiver"/>
             		</filter>
             	</pipeline>
             	<pipeline>
