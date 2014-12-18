@@ -14,9 +14,7 @@
             <multicast stopOnException="true">
             	<pipeline>
             		<filter>
-<!--
-            			<xpath>/atom:entry/atom:content/ki:UtlandskOrtHandelse</xpath>
--->
+            			<xpath logNamespaces="true">/atom:entry/atom:content/ki:UtlandskOrtHandelse</xpath>
 <!--
             			<xpath logNamespaces="true">/entry/content/*[local-name() = 'UtlandskOrtHandelse']</xpath>
 -->
