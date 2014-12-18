@@ -6,8 +6,8 @@
     xsi:schemaLocation="http://www.osgi.org/xmlns/blueprint/v1.0.0 http://www.osgi.org/xmlns/blueprint/v1.0.0/blueprint.xsd">
 
     <camelContext xmlns="http://camel.apache.org/schema/blueprint" 
-    				ki="http://schemas.ladok.se/kataloginformation"
-    				atom="http://www.w3.org/2005/Atom">
+    				xmlns:ki="http://schemas.ladok.se/kataloginformation"
+    				xmlns:atom="http://www.w3.org/2005/Atom">
         <route>
             <from uri="activemq:queue:ladok3-event-distribution" />
 <!-- 	            <transform><simple>Processing from Ladok: ${header.ladokEventNumber}</simple></transform> -->
@@ -15,9 +15,6 @@
             	<pipeline>
             		<filter>
             			<xpath logNamespaces="true">/atom:entry/atom:content/ki:UtlandskOrtHandelse</xpath>
-<!--
-            			<xpath logNamespaces="true">/entry/content/*[local-name() = 'UtlandskOrtHandelse']</xpath>
--->
  	            		<to uri="activemq:queue:ladok3event-testsystem" />
             		</filter>
             	</pipeline>
