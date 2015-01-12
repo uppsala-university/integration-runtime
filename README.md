@@ -53,6 +53,9 @@ Om du vill, se följande adresser:
 	`features:chooseurl hawtio 1.4.37`
 	`features:install hawtio`
 
+	Alternativ om hawtio krånglar:
+	`features:install hawtio-offline`
+
 	Gå sedan till <http://localhost:8181/hawtio> oc använd smx/smx för inloggning.
 
 Installera klientcertifikat för Ladok3

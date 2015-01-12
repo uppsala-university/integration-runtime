@@ -7,17 +7,21 @@
 
     <camelContext xmlns="http://camel.apache.org/schema/blueprint" 
     				xmlns:ki="http://schemas.ladok.se/kataloginformation"
+    				xmlns:sd="http://schemas.ladok.se/studiedeltagande"
     				xmlns:atom="http://www.w3.org/2005/Atom">
         <route>
             <from uri="activemq:queue:ladok3-event-distribution" />
-<!-- This simple transform is not tested.
             <to uri="xslt:se/uu/its/ladok3/atom/atomwash.xsl"/>
--->
+ 	        <to uri="activemq:queue:ladok3event-logdb" />
             <multicast stopOnException="true">
             	<pipeline>
             		<filter>
-            			<xpath logNamespaces="true">/atom:entry/atom:content/ki:UtlandskOrtHandelse</xpath>
- 	            		<to uri="activemq:queue:ladok3event-testsystem" />
+            			<xpath logNamespaces="true">/ki:UtlandskOrtHandelse</xpath>
+ 	            		<to uri="activemq:queue:ladok3event-test-ki" />
+            		</filter>
+            		<filter>
+            			<xpath logNamespaces="true">/sd:AvbrottHandelse</xpath>
+ 	            		<to uri="activemq:queue:ladok3event-test-sd" />
             		</filter>
             	</pipeline>
             	<pipeline>
