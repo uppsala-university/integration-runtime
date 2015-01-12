@@ -9,26 +9,46 @@
     				xmlns:ki="http://schemas.ladok.se/kataloginformation"
     				xmlns:sd="http://schemas.ladok.se/studiedeltagande"
     				xmlns:atom="http://www.w3.org/2005/Atom">
+
         <route>
+        
+        	<!-- Get the event as raw transport packed events from the distribution queue. -->
             <from uri="activemq:queue:ladok3-event-distribution" />
+            
+            <!-- Remove all transport related XML. -->
             <to uri="xslt:se/uu/its/ladok3/atom/atomwash.xsl"/>
+ 	        
+ 	        <!-- Log washed event XML. -->
  	        <to uri="activemq:queue:ladok3event-logdb" />
+            
+            <!-- Filter and distribute the messages to the subscribers. -->
             <multicast stopOnException="true">
+            	
+            	<!-- Pipeline for "system" test KI. -->
             	<pipeline>
             		<filter>
             			<xpath logNamespaces="true">/ki:UtlandskOrtHandelse</xpath>
  	            		<to uri="activemq:queue:ladok3event-test-ki" />
             		</filter>
-            		<filter>
+            	</pipeline>
+x
+				<!-- Pipeline for "system" test SD. -->
+            	<pipeline>
+             		<filter>
             			<xpath logNamespaces="true">/sd:AvbrottHandelse</xpath>
  	            		<to uri="activemq:queue:ladok3event-test-sd" />
             		</filter>
             	</pipeline>
+            	
+            	<!-- Pipeline for log DB. -->
             	<pipeline>
  	            	<to uri="activemq:queue:ladok3event-logdb" />
  	            </pipeline>
+ 	            
             </multicast>
+            
         </route>
+        
     </camelContext>
 
 </blueprint>
