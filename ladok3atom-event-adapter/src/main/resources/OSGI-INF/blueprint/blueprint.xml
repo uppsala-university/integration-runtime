@@ -5,66 +5,75 @@
     xmlns:osgi="http://www.springframework.org/schema/osgi"
 	xsi:schemaLocation="http://www.osgi.org/xmlns/blueprint/v1.0.0 http://www.osgi.org/xmlns/blueprint/v1.0.0/blueprint.xsd">
 
+	<!-- We need to execute this route in a transaction that ensures that 
+	     each read event also makes it all the way to the distribution quene. -->
 	<bean id="NEW" class="org.apache.camel.spring.spi.SpringTransactionPolicy">
 		<property name="transactionManager" ref="jmsTransactionManager" />
 		<property name="propagationBehaviorName" value="PROPAGATION_REQUIRES_NEW" />
 	</bean>
 
+	<!-- JMS and ActiveMQ is used for distribution and transactions. -->
 	<bean id="jmsTransactionManager"
 		class="org.springframework.jms.connection.JmsTransactionManager">
 		<property name="connectionFactory" ref="jmsConnectionFactory" />
 	</bean>
-
 	<bean id="jmsConnectionFactory" class="org.apache.activemq.ActiveMQConnectionFactory">
 		<property name="brokerURL" value="tcp://localhost:61616" />
         <property name="userName" value="smx" />
         <property name="password" value="smx" />
 	</bean>
-
 	<bean id="activemq" class="org.apache.activemq.camel.component.ActiveMQComponent">
 		<property name="connectionFactory" ref="jmsConnectionFactory" />
 		<property name="transacted" value="true" />
 	</bean>
-<!--    <service ref="activemq" interface="org.apache.camel.Component"/>
+	
+	<!-- For now we use the simple file based event persistance and the generic ATOM client. -->
+	<bean id="eventPersistance" class="se.sunet.ati.ladok.atom.FileBasedEventPersistance" />
+	<bean id="atomClient" class="se.sunet.ati.ladok.atom.AtomClient" />	
 
-   <osgi:reference id="activemq" interface="org.apache.camel.Component" /> -->
 	<camelContext xmlns="http://camel.apache.org/schema/blueprint">
 
-
-		<!-- En route som inleds via en timer. Var 5e sekund vaknar timern och
-			skickar meddelande till eventPersistance, som tar reda på nästa meddelandenummer
-			att hämta. Anropet går sedan vidare till feedFetcher som hämtar en lista
-			av händelser ( List<Entry> ), splittar dessa och skickar till ändpunkten
-			direct:distribute -->
 		<route>
-			<!-- Startar ingen ny förrän den gamla är klar. Oklart om försök görs var femte sekund eller fem sekunder efter avslut. -->
-			<from
-				uri="timer://ladok?fixedRate=true&amp;period=5000&amp;repeatCount=0" />
+		
+			<!-- Pull the Ladok ATOM feed every 5 seconds.. -->
+			<from uri="timer://ladok?fixedRate=true&amp;period=5000&amp;repeatCount=0" />
+
+			<!-- Everything after the created transaction will ensure that each read ATOM entry
+			     makes it all the way to the queye. -->
 			<transacted ref="NEW" />
+			
+			<!-- Collect the identifier for hte last read ATOM entry. -->
 			<to uri="bean:eventPersistance?method=getLastReadEntryId" />
+			
+			<!-- Print the last read entry id to the console. -->
 			<to uri="log:log-test?level=INFO" />
+			
+			<!-- Query new Ladok for new entries and return a splittable list. -->			
 			<to uri="bean:atomClient?method=getEntries" />
+
+			<!-- For each new entry in the list, log and put the event on the distribution queue. -->
 			<split streaming="true" stopOnException="true">
+
 				<simple>${body}</simple>
+				
+				<!-- Print to console. -->
 				<to uri="log:hanterar-meddelande?level=INFO" />
+				
+				<!-- Put on dummy log. Just for testing. -->
 				<to uri="activemq:queue:ladok3-dummy-log" />
+				
+				<!-- Save current event to event persistance.  -->
 				<to uri="bean:eventPersistance?method=saveEntry" />
+				
+				<!-- Convert to string to avoid JMS serialization problems before put to 
+				     distribution queue. -->
 				<convertBodyTo type="java.lang.String" />
 				<to uri="activemq:queue:ladok3-event-distribution" />
- 				<!--<delay><constant>1000</constant></delay> -->
+
 			</split>
+			
 		</route>
 
-		<!-- Sparar meddelandet i loggen via eventPersistance och omvandlar sedan
-			kroppen till strängform för att undvika problem vid JMS-serialiseringen.
-			Därefter läggs meddelandet på distributionskön. -->
-<!-- 		<route>
-
-
-		</route> -->
 	</camelContext>
-
-	<bean id="eventPersistance" class="se.sunet.ati.ladok.atom.FileBasedEventPersistance" />
-	<bean id="atomClient" class="se.sunet.ati.ladok.atom.AtomClient" />
 
 </blueprint>
