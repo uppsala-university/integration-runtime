@@ -12,7 +12,7 @@ mvn3 clean package -Dmaven.test.skip=true
 #    vagrant@localhost:/opt/servicemix/apache-servicemix-5.1.2/deploy/
 
 cp -v \
-	../ladok3/ladok3atom-*/target/*.jar \
+    ../ladok3/ladok3atom-*/target/*.jar \
     */target/*.jar \
     smx/deploy/
 

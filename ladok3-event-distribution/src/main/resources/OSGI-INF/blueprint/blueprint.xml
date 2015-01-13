@@ -31,7 +31,7 @@
  	            		<to uri="activemq:queue:ladok3event-test-ki" />
             		</filter>
             	</pipeline>
-x
+
 				<!-- Pipeline for "system" test SD. -->
             	<pipeline>
              		<filter>
