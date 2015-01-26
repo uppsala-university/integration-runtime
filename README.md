@@ -1,4 +1,4 @@
-Du behöver vagrant och virtualbox på din dator.
+Du behöver Vagrant och Virtual Box på din dator.
 
 Starta miljön
 =============
