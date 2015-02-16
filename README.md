@@ -49,10 +49,12 @@ Om du vill, se följande adresser:
 * <http://hawt.io/getstarted/index.html>
 
 (Hawtio i korthet...)
+
     features:chooseurl hawtio 1.4.37
     features:install hawtio
 
 Alternativ om hawtio krånglar:
+
     features:install hawtio-offline
 
 Gå sedan till <http://localhost:8181/hawtio> oc använd smx/smx för inloggning.
