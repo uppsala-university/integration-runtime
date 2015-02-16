@@ -4,7 +4,7 @@
 
 mvn3 -f ../ladok clean package -Dmaven.test.skip=true
 mvn3 -f ../ladok-integration clean package -Dmaven.test.skip=true
-#mvn3 -f ../uu-integration clean package -Dmaven.test.skip=true
+mvn3 -f ../uu-integration clean package -Dmaven.test.skip=true
 
 # echo "Note! use password 'vagrant' when using scp to vagrant vm:"
 # scp -P 2222 \
@@ -15,9 +15,9 @@ mvn3 -f ../ladok-integration clean package -Dmaven.test.skip=true
 cp -v \
     ../ladok/ladok3atom-*/target/*.jar \
     ../ladok-integration/ladok3atom-*/target/*.jar \
+    ../uu-integration/ladok*/target/*.jar \
     smx/deploy/
 
-#    ../uu-integration/*/target/*.jar \
 
 
 echo "You might now be interested in doing:"
