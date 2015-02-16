@@ -81,7 +81,7 @@ Check ut projekten `ladok`, `ladok-integration` samt `uu-integration`
 
 Bygg källkoden i resp projekt, genom
 
-`$ mvn clean package`
+    $ mvn clean package
 
 Detta bygger ett s.k. "maven multi module project".
 
@@ -102,19 +102,19 @@ Det innebär att varje fil som driftsätts till deploy-katalogen måste touchas 
 
 Kopiera först klienten från `ladok`
 
-`$ cp ../ladok/ladok3atom-client/target/ladok3atom-reader-0.0.1-SNAPSHOT.jar smx/deploy/`
+    $ cp ../ladok/ladok3atom-client/target/ladok3atom-reader-0.0.1-SNAPSHOT.jar smx/deploy/
 
 Driftsätt sedan integrationsadaptern som exekverar klienten från `ladok-integration`
 
-`$ cp ../ladok-integration/ladok3atom-event-adapter/target/ladok3atom-event-adapter-0.0.1-SNAPSHOT.jar smx/deploy/`
+    $ cp ../ladok-integration/ladok3atom-event-adapter/target/ladok3atom-event-adapter-0.0.1-SNAPSHOT.jar smx/deploy/
 
 Därefter driftsätts den integrationsmodul som distribuerar händelserna till de system som ska prenumerera på händelserna från `uu-integration`
 
-`$ cp ../uu-integration/ladok3-event-distribution/target/ladok3-event-distribution-0.0.1-SNAPSHOT.jar smx/deploy/`
+    $ cp ../uu-integration/ladok3-event-distribution/target/ladok3-event-distribution-0.0.1-SNAPSHOT.jar smx/deploy/
 
 Driftsätt sedan en konsument från `uu-integration`
 
-`$ cp ../uu-integration/ladok3event-logdb-adapter/target/ladok3event-logdb-adapter-0.0.1-SNAPSHOT.jar smx/deploy/`
+    $ cp ../uu-integration/ladok3event-logdb-adapter/target/ladok3event-logdb-adapter-0.0.1-SNAPSHOT.jar smx/deploy/
 
 Deploy-katalog på den delade disken kommer överleva omstarter och ominstallationer (vagrant destroy) av den virtuella maskinen.
 
