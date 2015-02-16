@@ -16,6 +16,7 @@ cp -v \
     ../ladok/ladok3atom-*/target/*.jar \
     ../ladok-integration/ladok3atom-*/target/*.jar \
     ../uu-integration/ladok*/target/*.jar \
+    ../uu-integration/esb*/target/*.jar \
     smx/deploy/
 
 
