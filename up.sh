@@ -1,9 +1,10 @@
 #!/bin/sh
 
-vagrant up
+#vagrant up
 
-mvn3 clean package -Dmaven.test.skip=true
-( cd ../ladok3; mvn3 clean package -Dmaven.test.skip=true )
+mvn3 -f ../ladok clean package -Dmaven.test.skip=true
+mvn3 -f ../ladok-integration clean package -Dmaven.test.skip=true
+#mvn3 -f ../uu-integration clean package -Dmaven.test.skip=true
 
 # echo "Note! use password 'vagrant' when using scp to vagrant vm:"
 # scp -P 2222 \
@@ -12,9 +13,12 @@ mvn3 clean package -Dmaven.test.skip=true
 #    vagrant@localhost:/opt/servicemix/apache-servicemix-5.1.2/deploy/
 
 cp -v \
-    ../ladok3/ladok3atom-*/target/*.jar \
-    */target/*.jar \
+    ../ladok/ladok3atom-*/target/*.jar \
+    ../ladok-integration/ladok3atom-*/target/*.jar \
     smx/deploy/
+
+#    ../uu-integration/*/target/*.jar \
+
 
 echo "You might now be interested in doing:"
 echo "vagrant ssh"
