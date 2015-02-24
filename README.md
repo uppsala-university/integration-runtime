@@ -5,7 +5,7 @@ Starta miljön
 
 Starta maskinen med vagrant
 
-`$ vagrant up`
+    vagrant up
 
 Efter en stunds tuggande bör maskinen komma igång med följande komponenter installerade
 
@@ -17,11 +17,11 @@ Starta servicemix
 
 Starta servicmix i den virtuella miljön
 
-`$ vagrant ssh`
+    vagrant ssh
 
 Kontrollera att tjänsten servicemix är startad
 
-`$ sudo service apache-servicemix status`
+    sudo service apache-servicemix status
 
 Håll sedan koll på filen /var/lib/servicemix/log/servicemix.log.
 
@@ -29,15 +29,15 @@ Konsoll för servicemix
 ======================
 Kör ssh mot servicemix. Lösenordet är "smx"
 
-`$ ssh -p 8101 smx@localhost`
+    ssh -p 8101 smx@localhost
 
 I konsollen kan du t.ex. titta på inkommande kön:
 
-`activemq:browse --amqurl tcp://localhost:61616 ladok3-event-distribution`
+    activemq:browse --amqurl tcp://localhost:61616 ladok3-event-distribution
 
 eller följa loggen:
 
-`log:tail`
+    log:tail
 
 
 Installera webbkonsoll för ActiveMQ samt Hawtio
@@ -48,35 +48,50 @@ Om du vill, se följande adresser:
 * <http://marcelojabali.blogspot.se/2011/08/how-to-enable-activemq-web-console-on.html>
 * <http://hawt.io/getstarted/index.html>
 
-	(Hawtio i korthet...)
+(Hawtio i korthet...)
 
 	`features:chooseurl hawtio 1.4.45`
 	`features:install hawtio`
 
-	Alternativ om hawtio krånglar:
-	`features:install hawtio-offline`
+Alternativ om hawtio krånglar:
 
-	Gå sedan till <http://localhost:8181/hawtio> oc använd smx/smx för inloggning.
+    features:install hawtio-offline
+
+Gå sedan till <http://localhost:8181/hawtio> oc använd smx/smx för inloggning.
 
 Installera klientcertifikat för Ladok3
-================================
-Klienten som används för att hämta händelser från Ladok's ATOM-gränssnitt finns i biblioteket <https://github.com/uppsala-university/ladok3>.
+======================================
+Klienten som används för att hämta händelser från Ladok's ATOM-gränssnitt finns i biblioteket <https://github.com/uppsala-university/ladok>.
 
 Kopiera klientcertifikat för Ladok3 till katalogen `ladok3atom-client/src/main/resources/`. Certifikatet ska vara på PKCS 12-format.
 
 I `ladok3atom-client/src/main/resources` finns en exempelfil för fordrade egenskaper. Använd den genom att döpa om den
 
-`mv atomclient.properties.sample atomclient.properties`
+    mv atomclient.properties.sample atomclient.properties
 
 Redigera sedan filen `ladok3atom-client/src/main/resources/atomclient.properties` för att innehålla rätt namn på certifikatfil och lösenord.
 
 Driftsätt händelsehanteraren i vagrant-miljö
 ============================================
-Bygg källkoden i `ladok3-event`, genom
+Check ut projekten `ladok`, `ladok-integration` samt `uu-integration` 
 
-`$ mvn clean package`
+    git clone git@github.com/uppsala-university/ladok
+    git clone git@github.com/uppsala-university/ladok-integration
+    git clone git@github.com/uppsala-university/uu-integration
+
+Bygg källkoden i resp projekt, genom
+
+    mvn clean package
 
 Detta bygger ett s.k. "maven multi module project".
+
+Förutsatt att projketen är tillgängliga parallellt med det här projektet kan man även bygga projekten genom
+
+    mvn -f ../ladok clean package -Dmaven.test.skip=true
+    mvn -f ../ladok-integration clean package -Dmaven.test.skip=true
+    mvn -f ../uu-integration clean package -Dmaven.test.skip=true
+
+(I det här exemplet hoppar vi över att köra testerna)
 
 Nu går det att deploya till servicemix. Det görs genom att kopiera filer till deploy-katalogen som
 ligger under "smx/deploy" relativt denna fil. Detta är en specialare för vagrant-miljöerna. En närmare
@@ -85,21 +100,21 @@ att den hamnar på den delade disken mellan vagrant-maskinen och värd-maskinen.
 att utveckla. Noterbart är att "hotdeploy" inte fungerar eftersom att inotify inte kan hantera vboxfs.
 Det innebär att varje fil som driftsätts till deploy-katalogen måste touchas inifrån gästsystemet.
 
-Kopiera först klienten från `ladok3`
+Kopiera först klienten från `ladok`
 
-`$ cp ladok3atom-client/target/ladok3atom-reader-0.0.1-SNAPSHOT.jar smx/deploy/`
+    cp ../ladok/ladok3atom-client/target/ladok3atom-reader-0.0.1-SNAPSHOT.jar smx/deploy/
 
-Driftsätt sedan integrationsadaptern som exekverar klienten från `ladok3-event`
+Driftsätt sedan integrationsadaptern som exekverar klienten från `ladok-integration`
 
-`$ cp ladok3atom-event-adapter/target/ladok3atom-event-adapter-0.0.1-SNAPSHOT.jar smx/deploy/`
+    cp ../ladok-integration/ladok3atom-event-adapter/target/ladok3atom-event-adapter-0.0.1-SNAPSHOT.jar smx/deploy/
 
-Därefter driftsätts den integrationsmodul som distribuerar händelserna till de system som ska prenumerera på händelserna
+Därefter driftsätts den integrationsmodul som distribuerar händelserna till de system som ska prenumerera på händelserna från `uu-integration`
 
-`$ cp ladok3-event-distribution/target/ladok3-event-distribution-0.0.1-SNAPSHOT.jar smx/deploy/`
+    cp ../uu-integration/ladok3-event-distribution/target/ladok3-event-distribution-0.0.1-SNAPSHOT.jar smx/deploy/
 
-Driftsätt sedan en konsument
+Driftsätt sedan en konsument från `uu-integration`
 
-`$ cp ladok3event-logdb-adapter/target/ladok3event-logdb-adapter-0.0.1-SNAPSHOT.jar smx/deploy/`
+    cp ../uu-integration/ladok3event-logdb-adapter/target/ladok3event-logdb-adapter-0.0.1-SNAPSHOT.jar smx/deploy/
 
 Deploy-katalog på den delade disken kommer överleva omstarter och ominstallationer (vagrant destroy) av den virtuella maskinen.
 
