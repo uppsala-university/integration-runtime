@@ -15,6 +15,7 @@ Vagrant.configure("2") do |config|
     override.vm.network :forwarded_port, guest: 8081, host: 8081
     override.vm.network :forwarded_port, guest: 8101, host: 8101
     override.vm.network :forwarded_port, guest: 8181, host: 8181
+    override.vm.network :forwarded_port, guest: 8989, host: 8989
     vb.customize ["modifyvm", :id, "--memory", 1024]
     vb.customize ["modifyvm", :id, "--natdnshostresolver1", "on"]
   end
