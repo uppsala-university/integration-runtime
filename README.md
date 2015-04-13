@@ -50,7 +50,7 @@ Om du vill, se följande adresser:
 
 (Hawtio i korthet...)
 
-	`features:chooseurl hawtio 1.4.45`
+	`features:chooseurl hawtio 1.4.48`
 	`features:install hawtio`
 
 Alternativ om hawtio krånglar:
