@@ -3,14 +3,28 @@ node "centos.dev.uu.se" {
 	include without-iptables
 	include servicemix
 	include ladok-dummy-webserver
-	#include mariadb
+	include mariadb
 	#include neo4j
 	
 	servicemix::smx-relink { 'deploy' :
 		src		=> '/opt/servicemix/apache-servicemix-5.1.2/deploy',
 		dest	=> '/vagrant/smx/deploy'
 	}
-	
+
+	mariadb::passwd{"root":
+		pwd => 'magento'
+	} ->
+	mariadb::database{'logdb':
+		ensure   => 'importdb',
+		sql      => '/vagrant/provision/modules/mariadb/sql/init.sql',
+		adminPwd => 'magento'
+	} ->
+	mariadb::user{'idintegration':
+		password => 'foobar',
+		database => 'logdb',
+		adminPwd => 'magento'
+	}
+
 }
 
 node "centos.prod.uu.se" {

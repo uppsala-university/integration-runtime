@@ -26,6 +26,7 @@ class servicemix {
 
 	file { "/opt/servicemix/apache-servicemix-$version/etc/org.apache.karaf.features.cfg":
 		source		=> 'puppet:///modules/servicemix/org.apache.karaf.features.cfg',
+		owner		=> smx,
 		require		=> Package['apache-servicemix']
 	}
 
