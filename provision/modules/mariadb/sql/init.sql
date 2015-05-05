@@ -1,7 +1,7 @@
 CREATE TABLE uuevents
 (
-   identifier char(100) PRIMARY KEY NOT NULL,
+   identifier varchar(255) PRIMARY KEY NOT NULL,
    issuedTime timestamp,
-   producer char(20),
-   producerReferenceId char(100)
+   producer varchar(255),
+   producerReferenceId varchar(255)
 );
