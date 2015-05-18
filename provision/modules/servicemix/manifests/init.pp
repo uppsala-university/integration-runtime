@@ -1,12 +1,12 @@
 class servicemix {
 
-	$version = "5.1.2"
+	$version = "5.4.0"
 
 	# Packages servicemix depends upon.
 	# But this is not declared in the servicemix rpm
 	# since there is no good "java" dependency.... openjdk, oracle jdk, ibm jdk etc.. 
 	package { "java-1.7.0-openjdk":
-    	ensure		=> present
+    		ensure		=> present
    	}
 
    	file { '/opt/rpm':
@@ -24,14 +24,8 @@ class servicemix {
 		source 		=> "/opt/rpm/apache-servicemix-$version-0.noarch.rpm"
 	}
 
-	file { "/opt/servicemix/apache-servicemix-$version/etc/org.apache.karaf.features.cfg":
-		source		=> 'puppet:///modules/servicemix/org.apache.karaf.features.cfg',
-		owner		=> smx,
-		require		=> Package['apache-servicemix']
-	}
-
-	file { "/opt/servicemix/apache-servicemix-$version/deploy/abdera-1.1.3-feature.xml":
-   		source 		=> 'puppet:///modules/servicemix/abdera-1.1.3-feature.xml',
+	file { "/opt/servicemix/apache-servicemix-$version/deploy/uu-features.xml":
+   		source 		=> 'puppet:///modules/servicemix/uu-features.xml',
    		require		=> Service['apache-servicemix']
    	}
 	
@@ -43,10 +37,16 @@ class servicemix {
 	}
 
 	service { 'apache-servicemix':
-		enable		=>	true,
+		enable		=> true,
 		ensure 		=> running,
 		require		=> [Package['java-1.7.0-openjdk'],
 				    Package['apache-servicemix']]
 	}
+
+   	file { '/opt/servicemix/.m2':
+   		ensure		=> directory,
+		owner		=> smx,
+		require		=> Package['apache-servicemix']
+   	}
 
 }
