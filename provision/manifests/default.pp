@@ -6,10 +6,10 @@ node "centos.dev.uu.se" {
 	include mariadb
 	#include neo4j
 	
-	servicemix::smx-relink { 'deploy' :
-		src		=> '/opt/servicemix/apache-servicemix-5.4.0/deploy',
-		dest	=> '/vagrant/smx/deploy'
-	}
+#	servicemix::smx-relink { 'deploy' :
+#		src		=> '/opt/servicemix/apache-servicemix-5.4.0/deploy',
+#		dest	=> '/vagrant/smx/deploy'
+#	}
 
 	mariadb::passwd{"root":
 		pwd => 'magento'
