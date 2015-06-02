@@ -3,6 +3,7 @@
 
     <feature name="uu-misc" version="1">
         <feature>camel-jaxb</feature>
+        <feature>jndi</feature>
         <!--
         <feature>camel-jpa</feature>
         -->
