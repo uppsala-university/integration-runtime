@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <features xmlns="http://karaf.apache.org/xmlns/features/v1.0.0" name="UU-Dependencies">
 
+  <repository>mvn:io.hawt/hawtio-karaf/1.4.51/xml/features</repository>
+
   <!-- Resources needed for esb-datasource-* -->
   <feature name="uu-datasource" version="1">
 
@@ -17,6 +19,7 @@
 
   <!-- Integration plattform basic components. -->
   <feature name="uu-misc" version="1">
+    <feature>hawtio</feature>
     <feature>camel-jaxb</feature>
     <feature>jndi</feature>
     <!-- Se feature: camel-jpa-without-geronimo-jpa_2.0_spec
