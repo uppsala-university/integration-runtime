@@ -4,5 +4,5 @@ CREATE TABLE uuevents
    issuedTime timestamp,
    producer varchar(255),
    producerReferenceId varchar(255),
-   type varchar(255)
+   event_type varchar(255)
 );
