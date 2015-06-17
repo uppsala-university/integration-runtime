@@ -1,8 +1,21 @@
-CREATE TABLE uuevents
-(
-   identifier varchar(255) PRIMARY KEY NOT NULL,
-   issuedTime timestamp,
-   producer varchar(255),
-   producerReferenceId varchar(255),
-   type varchar(255)
+ /*
+  * UU ESB Log table
+  */
+CREATE TABLE uuevents (
+  identifier varchar(255) PRIMARY KEY NOT NULL,
+  issuedTime timestamp,
+  producer varchar(255),
+  producerReferenceId varchar(255),
+  type varchar(255)
+);
+
+ /*
+  * Apache Camel JPA Idempotent Repository
+  */
+CREATE TABLE CAMEL_MESSAGEPROCESSED (
+  id BIGINT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  processorName VARCHAR(255),
+  messageId VARCHAR(100),
+  createdAt TIMESTAMP,
+  UNIQUE KEY `ix_key` (`processorName`, `messageId`)
 );
