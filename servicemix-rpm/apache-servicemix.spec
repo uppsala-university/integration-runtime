@@ -1,6 +1,6 @@
 Summary:     	ServiceMix RPM
 Name:           apache-servicemix
-Version:       	__VERSION
+Version:       	6.0.0
 Release:        0
 License:        none
 Source0:       	%{name}-%{version}.zip
@@ -9,6 +9,8 @@ BuildArch:      noarch
 BuildRoot:      %{_tmppath}/%{name}-build
 Group:          System/Integration
 Vendor:         Uppsala university
+
+BuildRequires: zip
 
 %define smx_home /opt/servicemix
 %define smx_group smx
