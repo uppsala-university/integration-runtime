@@ -12,7 +12,7 @@
         exec { "MySQL: create and import database $name from $sql":
           command => "/usr/bin/mysql -u$admin -p$adminPwd --execute=\"CREATE DATABASE ${name}\";
                       /usr/bin/mysql  -u$admin -p$adminPwd ${name} < ${sql}",
-          unless => "/usr/bin/mysql  - -u$admin -p$adminPwd -execute=\"SHOW DATABASES;\" | grep -x '${name}'",
+          unless => "/usr/bin/mysql -u$admin -p$adminPwd --execute=\"SHOW DATABASES;\" | grep -x '${name}'",
 		  require => Service ['mysql']
         }
       }
@@ -30,4 +30,3 @@
       }
     }
 }
-
