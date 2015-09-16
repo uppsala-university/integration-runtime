@@ -1,62 +1,62 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<features xmlns="http://karaf.apache.org/xmlns/features/v1.0.0" name="UU-Dependencies">
+<features xmlns="http://karaf.apache.org/xmlns/features/v1.2.0" name="UU-Dependencies">
 
   <repository>mvn:io.hawt/hawtio-karaf/1.4.51/xml/features</repository>
 
-  <!-- Resources needed for esb-datasource-* -->
-  <feature name="uu-datasource" version="1">
+  <feature name="uu-all" version="1" install="auto" description="Collection of all UU features">
+    <feature version="1">uu-datasource</feature>
+    <feature version="1">uu-misc</feature>
+    <feature version="1.1.3">uu-abdera</feature>
+    <feature version="2.15.2">uu-camel-jpa-without-geronimo-jpa_2.0_spec</feature>
+    <feature version="4.3.9.Final">uu-hibernate_439</feature>
+  </feature>
 
-    <!-- Prerequisite bundles -->
+  <feature name="uu-datasource" version="1" description="Resources needed for esb-datasource-*">
+    <!-- Prerequisite bundles: -->
     <bundle>mvn:org.apache.geronimo.specs/geronimo-j2ee-connector_1.5_spec/2.0.0</bundle>
     <bundle>mvn:org.apache.geronimo.components/geronimo-connector/2.2.2</bundle>
-
-    <!-- Driver(s) -->
+    <!-- Drivers: -->
     <bundle>wrap:mvn:mysql/mysql-connector-java/5.1.35</bundle>
     <bundle>wrap:mvn:org.tranql/tranql-connector/1.8</bundle>
     <bundle>wrap:mvn:org.tranql/tranql-connector-mysql-common/1.6</bundle>
-
   </feature>
 
-  <!-- Integration plattform basic components. -->
-  <feature name="uu-misc" version="1">
+  <feature name="uu-misc" version="1" description="UU integration platform basic components">
     <feature>hawtio</feature>
     <feature>camel-jaxb</feature>
     <feature>jndi</feature>
-    <!-- Se feature: camel-jpa-without-geronimo-jpa_2.0_spec
+    <!-- Se feature: uu-camel-jpa-without-geronimo-jpa_2.0_spec
     <feature>camel-jpa</feature>
     -->
   </feature>
 
-  <!-- JPA-feature in combination with Hibernate.  -->
-  <feature name="camel-jpa-without-geronimo-jpa_2.0_spec" version="2.14.1">
-    <feature version="[3.2,4)">spring-tx</feature>
+  <feature name="uu-camel-jpa-without-geronimo-jpa_2.0_spec" version="2.15.2" resolver="(obr)" start-level="50"
+           description="Camel-jpa with geronimo-jpa_2.0_spec replaced with Hibernate implementation">
+    <feature version="2.15.2">camel-core</feature>
     <feature version="[3.2,4)">spring-jdbc</feature>
     <feature version="[3.2,4)">spring-orm</feature>
-    <feature version="2.14.1">camel-core</feature>
-    <feature>hibernate_439</feature>
-    <feature>jdbc</feature>
-    <bundle start-level="50">mvn:org.apache.geronimo.specs/geronimo-annotation_1.0_spec/1.1.1</bundle>
+    <feature version="[3.2,4)">spring-tx</feature>
+	<!-- Add this feature dependency to compensate for removing geronimo-jpa_2.0_spec: -->
+    <feature>uu-hibernate_439</feature>
+    <bundle dependency="true">mvn:commons-collections/commons-collections/3.2.1</bundle>
+    <bundle dependency="true">mvn:commons-dbcp/commons-dbcp/1.4</bundle>
+    <bundle dependency="true">mvn:commons-lang/commons-lang/2.6</bundle>
+    <bundle dependency="true">mvn:commons-pool/commons-pool/1.6</bundle>
     <!-- Skip this because it conflicts with hibernate-jpa-2.1-api:
-    <bundle start-level="50">mvn:org.apache.geronimo.specs/geronimo-jpa_2.0_spec/1.1</bundle>
+    <bundle dependency="true">mvn:org.apache.geronimo.specs/geronimo-jpa_2.0_spec/1.1</bundle>
     -->
-    <bundle start-level="50">mvn:org.apache.geronimo.specs/geronimo-servlet_3.0_spec/1.0</bundle>
-    <bundle start-level="50">mvn:org.apache.geronimo.specs/geronimo-el_1.0_spec/1.0.1</bundle>
-    <bundle start-level="50">mvn:org.apache.geronimo.specs/geronimo-jta_1.1_spec/1.1.1</bundle>
-    <bundle start-level="50">mvn:commons-lang/commons-lang/2.6</bundle>
-    <bundle start-level="50">mvn:commons-collections/commons-collections/3.2.1</bundle>
-    <bundle start-level="50">mvn:commons-pool/commons-pool/1.6</bundle>
-    <bundle start-level="50">mvn:org.apache.servicemix.bundles/org.apache.servicemix.bundles.commons-dbcp/1.4_3</bundle>
-    <bundle start-level="50">mvn:org.apache.servicemix.bundles/org.apache.servicemix.bundles.ant/1.7.0_6</bundle>
-    <bundle start-level="50">mvn:org.apache.servicemix.bundles/org.apache.servicemix.bundles.serp/1.14.1_1</bundle>
-    <bundle start-level="50">mvn:org.apache.geronimo.specs/geronimo-jms_1.1_spec/1.1.1</bundle>
-    <bundle start-level="50">mvn:org.apache.xbean/xbean-asm4-shaded/3.14</bundle>
-    <!-- Skip openjpa persistence implementation and use hibernate instead:
-    <bundle start-level="50">mvn:org.apache.openjpa/openjpa/2.3.0</bundle>
-    -->
-    <bundle start-level="50">mvn:org.apache.camel/camel-jpa/2.14.1</bundle>
+    <bundle dependency="true">mvn:org.apache.geronimo.specs/geronimo-annotation_1.0_spec/1.1.1</bundle>
+    <bundle dependency="true">mvn:org.apache.geronimo.specs/geronimo-el_1.0_spec/1.0.1</bundle>
+    <bundle dependency="true">mvn:org.apache.geronimo.specs/geronimo-jms_1.1_spec/1.1.1</bundle>
+    <bundle dependency="true">mvn:org.apache.geronimo.specs/geronimo-jta_1.1_spec/1.1.1</bundle>
+    <bundle dependency="true">mvn:org.apache.geronimo.specs/geronimo-servlet_3.0_spec/1.0</bundle>
+    <bundle dependency="true">mvn:org.apache.servicemix.bundles/org.apache.servicemix.bundles.ant/1.7.0_6</bundle>
+    <bundle dependency="true">mvn:org.apache.servicemix.bundles/org.apache.servicemix.bundles.serp/1.14.1_1</bundle>
+    <bundle dependency="true">mvn:org.apache.xbean/xbean-asm4-shaded/3.14</bundle>
+    <bundle>mvn:org.apache.camel/camel-jpa/2.15.2</bundle>
   </feature>
 
-  <feature name="hibernate_439" description="Hibernate 4.3.x JPA persistence engine support" version="4.3.9.Final" resolver="(obr)">
+  <feature name="uu-hibernate_439" description="Hibernate 4.3.x JPA persistence engine support" version="4.3.9.Final" resolver="(obr)">
     <details>Enable Hibernate 4.3.x as persistence engine.</details>
     <feature version="2.1.0">jpa</feature>
     <feature>http</feature>
@@ -75,8 +75,7 @@
     <bundle start-level="100">mvn:org.hibernate/hibernate-osgi/4.3.9.Final</bundle>
   </feature>
 
-  <!-- Prerequisites for Ladok ATOM adapter. Should be moved to feature bundle in ladok-integration. -->
-  <feature name="uu-abdera" version="1.1.3">
+  <feature name="uu-abdera" version="1.1.3" description="Prerequisites for Ladok ATOM adapter, should be moved to feature bundle in ladok-integration">
     <bundle>mvn:commons-codec/commons-codec/1.7</bundle>
     <bundle>mvn:org.apache.james/apache-mime4j-core/0.7.2</bundle>
     <bundle>mvn:org.apache.servicemix.bundles/org.apache.servicemix.bundles.commons-httpclient/3.1_7</bundle>
@@ -85,4 +84,5 @@
     <bundle>mvn:org.apache.abdera/abdera-i18n/1.1.3</bundle>
     <bundle>mvn:org.apache.abdera/abdera-parser/1.1.3</bundle>
   </feature>
+
 </features>
