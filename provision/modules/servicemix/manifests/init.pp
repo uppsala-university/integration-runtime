@@ -5,7 +5,7 @@ class servicemix {
 	# Packages servicemix depends upon.
 	# But this is not declared in the servicemix rpm
 	# since there is no good "java" dependency.... openjdk, oracle jdk, ibm jdk etc..
-	package { "java-1.8.0-openjdk":
+	package { "java-1.7.0-openjdk":
   	ensure		=> present
   }
 
@@ -65,7 +65,7 @@ class servicemix {
 	service { 'apache-servicemix':
 		enable		=> true,
 		ensure 		=> running,
-		require		=> [Package['java-1.8.0-openjdk'],
+		require		=> [Package['java-1.7.0-openjdk'],
 									Package['apache-servicemix'],
 									File["/opt/servicemix/apache-servicemix-$version/etc/org.apache.activemq.server-default.cfg"],
 									File["/opt/servicemix/apache-servicemix-$version/etc/org.apache.activemq.server-dlq.cfg"],
