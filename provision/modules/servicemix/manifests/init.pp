@@ -26,7 +26,9 @@ class servicemix {
 
 	file { "/opt/servicemix/apache-servicemix-$version/deploy/uu-features.xml":
   	source 		=> 'puppet:///modules/servicemix/uu-features.xml',
-  	require		=> Service['apache-servicemix']
+  	require		=> Service['apache-servicemix'],
+		owner			=> smx,
+		group			=> smx
   }
 
 	file { '/opt/servicemix/smx-relink.sh':
