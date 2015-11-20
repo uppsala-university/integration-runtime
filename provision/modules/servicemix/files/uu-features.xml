@@ -4,7 +4,7 @@
 <features xmlns="http://karaf.apache.org/xmlns/features/v1.2.0" name="UU-Dependencies">
 -->
 
-  <repository>mvn:io.hawt/hawtio-karaf/1.4.51/xml/features</repository>
+  <repository>mvn:io.hawt/hawtio-karaf/1.4.57/xml/features</repository>
 
   <feature name="uu-all" version="1" description="Collection of all UU features"> <!-- install="auto" -->
     <feature version="1">uu-datasource</feature>
