@@ -2,6 +2,8 @@ Vagrant.configure("2") do |config|
 
   config.vm.hostname = "centos.dev.uu.se"
 
+  config.vm.synced_folder "~/.m2", "/vagrant/m2", create: true #, owner: "smx"
+
   config.vm.provision :puppet do |puppet|
      puppet.manifests_path = "provision/manifests"
      puppet.module_path    = "provision/modules"
