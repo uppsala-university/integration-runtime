@@ -103,6 +103,7 @@ Det innebär att varje fil som driftsätts till deploy-katalogen måste touchas 
 
 
 I värdsystemet, kopiera artifakterna till `smx/deploy`:
+
     cp ../uu-integration/esb-amq/target/esb-amq-1.0-SNAPSHOT.jar smx/deploy
     cp ../uu-integration/esb-datasource-logdb/target/esb-datasource-logdb-1.0-SNAPSHOT.jar smx/deploy
     cp ../uu-integration/esb-model/target/esb-model-1.1.0-SNAPSHOT.jar smx/deploy
