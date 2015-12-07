@@ -42,6 +42,7 @@ eller följa loggen:
 
 Installera webbkonsoll för ActiveMQ samt Hawtio
 ===============================================
+*Den här punkten är inte längre nödvändig eftersom Hawtio installeras via provissioneringen.*
 
 Om du vill, se följande adresser:
 
@@ -100,21 +101,25 @@ att den hamnar på den delade disken mellan vagrant-maskinen och värd-maskinen.
 att utveckla. Noterbart är att "hotdeploy" inte fungerar eftersom att inotify inte kan hantera vboxfs.
 Det innebär att varje fil som driftsätts till deploy-katalogen måste touchas inifrån gästsystemet.
 
-Kopiera först klienten från `ladok`
 
-    cp ../ladok/ladok3atom-client/target/ladok3atom-reader-0.0.1-SNAPSHOT.jar smx/deploy/
+I värdsystemet, kopiera artifakterna till `smx/deploy`:
+    cp ../uu-integration/esb-amq/target/esb-amq-1.0-SNAPSHOT.jar smx/deploy
+    cp ../uu-integration/esb-datasource-logdb/target/esb-datasource-logdb-1.0-SNAPSHOT.jar smx/deploy
+    cp ../uu-integration/esb-model/target/esb-model-1.1.0-SNAPSHOT.jar smx/deploy
+    cp ../ladok/ladok3atom-dto/target/ladok3atom-dto-0.0.1-SNAPSHOT.jar smx/deploy
+    cp ../ladok/ladok3atom-client/target/ladok3atom-client-0.0.1-SNAPSHOT.jar smx/deploy
+    cp ../ladok-integration/ladok-atom-adapter/target/ladok-atom-adapter-0.0.1-SNAPSHOT.jar smx/deploy
 
-Driftsätt sedan integrationsadaptern som exekverar klienten från `ladok-integration`
+I gästsystemet, kopiera artifakterna från `smx/deploy` till servicemix `deploy`:
 
-    cp ../ladok-integration/ladok3atom-event-adapter/target/ladok3atom-event-adapter-0.0.1-SNAPSHOT.jar smx/deploy/
+	cp /vagrant/smx/deploy/esb-amq-1.0-SNAPSHOT.jar /opt/servicemix/apache-servicemix-*/deploy
+    cp /vagrant/smx/deploy/esb-datasource-logdb-1.0-SNAPSHOT.jar /opt/servicemix/apache-servicemix-*/deploy
+    cp /vagrant/smx/deploy/esb-model-1.1.0-SNAPSHOT.jar /opt/servicemix/apache-servicemix-*/deploy
+    cp /vagrant/smx/deploy/ladok3atom-dto-0.0.1-SNAPSHOT.jar /opt/servicemix/apache-servicemix-*/deploy
+    cp /vagrant/smx/deploy/ladok3atom-client-0.0.1-SNAPSHOT.jar /opt/servicemix/apache-servicemix-*/deploy
+    cp /vagrant/smx/deploy/ladok-atom-adapter-0.0.1-SNAPSHOT.jar /opt/servicemix/apache-servicemix-*/deploy
 
-Därefter driftsätts den integrationsmodul som distribuerar händelserna till de system som ska prenumerera på händelserna från `uu-integration`
-
-    cp ../uu-integration/ladok3-event-distribution/target/ladok3-event-distribution-0.0.1-SNAPSHOT.jar smx/deploy/
-
-Driftsätt sedan en konsument från `uu-integration`
-
-    cp ../uu-integration/ladok3event-logdb-adapter/target/ladok3event-logdb-adapter-0.0.1-SNAPSHOT.jar smx/deploy/
+Vid redeploy bör artifakter först av-deployas (via `rm  /opt/servicemix/apache-servicemix-*/deploy/<artifakt>.jar`)
 
 Deploy-katalog på den delade disken kommer överleva omstarter och ominstallationer (vagrant destroy) av den virtuella maskinen.
 
