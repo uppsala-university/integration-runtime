@@ -52,6 +52,11 @@ class servicemix {
 		require		=> Package['apache-servicemix']
 	}
 
+	file { "/opt/servicemix/apache-servicemix-$version/etc/org.ops4j.pax.url.mvn.cfg":
+		source 		=> 'puppet:///modules/servicemix/org.ops4j.pax.url.mvn.cfg',
+		require		=> Package['apache-servicemix']
+	}
+
 #	file { "/opt/servicemix/apache-servicemix-$version/etc/ladok-atom-adapter.cfg":
 #		source 		=> 'puppet:///modules/servicemix/ladok-atom-adapter.cfg',
 #		require		=> Package['apache-servicemix']
@@ -70,6 +75,7 @@ class servicemix {
 									File["/opt/servicemix/apache-servicemix-$version/etc/org.apache.activemq.server-default.cfg"],
 									File["/opt/servicemix/apache-servicemix-$version/etc/org.apache.activemq.server-dlq.cfg"],
 #									File["/opt/servicemix/apache-servicemix-$version/etc/ladok-atom-adapter.cfg"],
+									File["/opt/servicemix/apache-servicemix-$version/etc/org.ops4j.pax.url.mvn.cfg"],
 									File["/opt/servicemix/apache-servicemix-$version/etc/activemq.xml"]]
 	}
 
