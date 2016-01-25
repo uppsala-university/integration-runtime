@@ -1,5 +1,5 @@
 node "centos.dev.uu.se" {
-	include devtools
+	#include devtools
 	include without-iptables
 	include servicemix
 	include ladok-dummy-webserver
@@ -28,9 +28,9 @@ node "centos.dev.uu.se" {
 }
 
 node "centos.prod.uu.se" {
-	include devtools
+	#include devtools
 	include servicemix
-	include ladok-dummy-webserver
-	#include mariadb
+	#include ladok-dummy-webserver
+	include mariadb
 	#include neo4j
 }
