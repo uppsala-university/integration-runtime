@@ -4,8 +4,7 @@ Version:       	4.0.4
 Release:        0
 License:        none
 Source0:       	%{name}-%{version}.zip
-#Source1:        %{name}.init
-BuildArch:      noarch
+#BuildArch:      noarch
 BuildRoot:      %{_tmppath}/%{name}-build
 Group:          System/Integration
 Vendor:         Uppsala university
@@ -17,6 +16,7 @@ BuildRequires: zip
 %define karaf_user karaf
 # no repacking of jars
 %define __jar_repack 0
+%define debug_package %{nil}
 
 %pre
 getent group %{karaf_group} >/dev/null || groupadd -r %{karaf_group}
@@ -31,27 +31,23 @@ This package is an installation package of Apache Karaf. Files will be installed
 %build
 
 %install
-install -d $RPM_BUILD_ROOT/opt/%{name}-%{version}
-cp -R * $RPM_BUILD_ROOT/opt/%{name}-%{version}
-install -d $RPM_BUILD_ROOT/opt/%{name}-%{version}/log
-#install -d -m 755 %{buildroot}/%{_initrddir}
+install -d %{buildroot}%{karaf_home}/%{name}-%{version}
+cp -R * %{buildroot}%{karaf_home}/%{name}-%{version}
+install -d %{buildroot}%{karaf_home}/%{name}-%{version}/log
+install -d -m 755 %{buildroot}%{_initrddir}
 
 # Install service wrapper
+#install -d -m 755 %{buildroot}%{karaf_home}/%{name}-%{version}/lib/wrapper
+#chown %{karaf_user}:%{karaf_group} %{buildroot}%{karaf_home}/%{name}-%{version}/lib/wrapper
+#install -m 755 %_sourcedir/karaf-wrapper %{buildroot}%{karaf_home}/%{name}-%{version}/bin
+#install -m 755 %_sourcedir/karaf-service %{buildroot}%{karaf_home}/%{name}-%{version}/bin
+#install -m 755 %_sourcedir/karaf.service %{buildroot}%{karaf_home}/%{name}-%{version}/bin
+#install -m 755 %_sourcedir/karaf-wrapper.conf %{buildroot}%{karaf_home}/%{name}-%{version}/etc
+#install -m 755 %_sourcedir/libwrapper.so %{buildroot}%{karaf_home}/%{name}-%{version}/lib/wrapper
+#install -m 755 %_sourcedir/karaf-wrapper.jar %{buildroot}%{karaf_home}/%{name}-%{version}/lib/wrapper
+#install -m 755 %_sourcedir/karaf-wrapper-main.jar %{buildroot}%{karaf_home}/%{name}-%{version}/lib/wrapper
 
 %post
-if [ ! -d %{karaf_home}/%{name}-%{version}/lib/wrapper ]
-then
-	install -d -m 755 %{karaf_home}/%{name}-%{version}/lib/wrapper
-fi
-chown %{karaf_user}:%{karaf_group} %{karaf_home}/%{name}-%{version}/lib/wrapper
-install    -m 755 %_sourcedir/karaf-wrapper %{karaf_home}/%{name}-%{version}/bin
-install    -m 755 %_sourcedir/karaf-service %{karaf_home}/%{name}-%{version}/bin
-install    -m 755 %_sourcedir/karaf.service %{karaf_home}/%{name}-%{version}/bin
-install    -m 755 %_sourcedir/karaf-wrapper.conf %{karaf_home}/%{name}-%{version}/etc
-install    -m 755 %_sourcedir/libwrapper.so %{karaf_home}/%{name}-%{version}/lib/wrapper
-install    -m 755 %_sourcedir/karaf-wrapper.jar %{karaf_home}/%{name}-%{version}/lib/wrapper
-install    -m 755 %_sourcedir/karaf-wrapper-main.jar %{karaf_home}/%{name}-%{version}/lib/wrapper
-
 # Point karaf to installed version
 if [ -h %{karaf_home}/%{name} ]
 then
