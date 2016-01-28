@@ -56,7 +56,7 @@ fi
 %{__ln_s} -f %{karaf_home}/%{name}-%{version} %{karaf_home}/%{name}
 
 # Link init-script to init rd dir
-if [ ! -h {_initrddir}/karaf-service ]
+if [ ! -h {_initrddir}/%{name} ]
 then
 	%{__ln_s} -f %{karaf_home}/%{name}/bin/karaf-service %{_initrddir}/%{name}
 fi
