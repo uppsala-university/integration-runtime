@@ -35,7 +35,7 @@ install -d %{buildroot}%{activemq_home}/%{name}-%{version}
 cp -R * %{buildroot}%{activemq_home}/%{name}-%{version}
 install -d %{buildroot}%{activemq_home}/%{name}-%{version}/log
 install -d -m 755 %{buildroot}%{_initrddir}
-chmod a+x %{buildroot}%{activemq_home}/%{name}-%{version}/bin/activemq
+chmod ug+x %{buildroot}%{activemq_home}/%{name}-%{version}/bin/activemq
 
 %post
 # Point apache-activemq to installed version
