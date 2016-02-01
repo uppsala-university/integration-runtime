@@ -1,23 +1,18 @@
 class karaf {
 
 	$version = "4.0.4"
-#	$java_version = "1.7.0"
-
-	# Packages Karaf depends upon.
-	# But this is not declared in the Karaf rpm
-	# since there is no good "java" dependency.... openjdk, oracle jdk, ibm jdk etc..
-#	package { "java-$java_version-openjdk":
-# 		ensure		=> present
-# 	}
-
-#	file { '/opt/rpm':
-# 		ensure		=> directory
-# 	}
 
 	file { "/opt/rpm/apache-karaf-$version-0.x86_64.rpm":
  		source 		=> "puppet:///modules/karaf/apache-karaf-$version-0.x86_64.rpm",
-# 		require		=> File['/opt/rpm']
 		require		=> Class['directorystructure']
+	}
+
+	file { "/opt/apache-karaf/etc/org.ops4j.pax.url.mvn.cfg":
+		source 		=> 'puppet:///modules/karaf/org.ops4j.pax.url.mvn.cfg',
+		mode			=> 0644,
+		owner			=> karaf,
+		group			=> karaf,
+		require		=> Package['apache-karaf']
 	}
 
 	package { 'apache-karaf':
@@ -29,7 +24,9 @@ class karaf {
 	service { 'apache-karaf':
 		enable		=> true,
 		ensure 		=> running,
-		require		=> [Class['java'], Package['apache-karaf']]
+		require		=> [Class['java'],
+		                Package['apache-karaf'],
+		                File["/opt/apache-karaf/etc/org.ops4j.pax.url.mvn.cfg"]]
 	}
 
 }
