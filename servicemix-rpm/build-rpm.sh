@@ -11,11 +11,8 @@ then
 	curl http://www.eu.apache.org/dist/servicemix/servicemix-6/$VERSION/$TARBALL > $TARBALL
 fi
 
-sed -i.bak s/__PKG/${PKG}/g apache-servicemix.spec
-sed -i.bak s/__VERSION/${VERSION}/g apache-servicemix.spec
-
-sed -i.bak s/__PKG/${PKG}/g apache-servicemix.init
-sed -i.bak s/__VERSION/${VERSION}/g apache-servicemix.init
+sed -i.bak -e s/__PKG/${PKG}/g -e s/__VERSION/${VERSION}/g apache-servicemix.spec
+sed -i.bak -e s/__PKG/${PKG}/g -e s/__VERSION/${VERSION}/g apache-servicemix.init
 
 yum -y install rpmdevtools && rpmdev-setuptree
 cp -v apache-servicemix.spec ~/rpmbuild/SPECS/

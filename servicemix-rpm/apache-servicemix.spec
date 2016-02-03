@@ -1,6 +1,6 @@
 Summary:     	ServiceMix RPM
-Name:           apache-servicemix
-Version:       	6.0.0
+Name:           __PKG
+Version:       	__VERSION
 Release:        0
 License:        none
 Source0:       	%{name}-%{version}.zip
