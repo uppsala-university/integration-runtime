@@ -58,7 +58,7 @@ rm -rf %{_topdir}/BUILD/%{name}-%{version}
 
 # list files owned by the package here
 %files
-%defattr(-,%{activemq_user},%{active_group})
+%defattr(-,%{activemq_user},%{activemq_group})
 %{activemq_home}/%{name}-%{version}
 
 %preun
