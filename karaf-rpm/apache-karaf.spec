@@ -1,6 +1,6 @@
 Summary:     	Karaf RPM
-Name:           apache-karaf
-Version:       	4.0.4
+Name:           __PKG
+Version:       	__VERSION
 Release:        0
 License:        none
 Source0:       	%{name}-%{version}.zip

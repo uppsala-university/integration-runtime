@@ -18,8 +18,7 @@ then
 	curl http://www.eu.apache.org/dist/karaf/$VERSION/$TARBALL > $TARBALL
 fi
 
-sed -i.bak s/__PKG/${PKG}/g apache-karaf.spec
-sed -i.bak s/__VERSION/${VERSION}/g apache-karaf.spec
+sed -i.bak -e s/__PKG/${PKG}/g -e s/__VERSION/${VERSION}/g apache-karaf.spec
 
 yum -y install rpmdevtools && rpmdev-setuptree
 cp -v apache-karaf.spec ~/rpmbuild/SPECS/
