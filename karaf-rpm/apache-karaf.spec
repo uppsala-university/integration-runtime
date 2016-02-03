@@ -4,7 +4,6 @@ Version:       	4.0.4
 Release:        0
 License:        none
 Source0:       	%{name}-%{version}.zip
-#BuildArch:      noarch
 BuildRoot:      %{_tmppath}/%{name}-build
 Group:          System/Integration
 Vendor:         Uppsala university
