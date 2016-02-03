@@ -12,8 +12,7 @@ then
 
 fi
 
-sed -i.bak s/__PKG/${PKG}/g apache-activemq.spec
-sed -i.bak s/__VERSION/${VERSION}/g apache-activemq.spec
+sed -i.bak -e s/__PKG/${PKG}/g -e s/__VERSION/${VERSION}/g apache-activemq.spec
 
 yum -y install rpmdevtools && rpmdev-setuptree
 cp -v apache-activemq.spec ~/rpmbuild/SPECS/

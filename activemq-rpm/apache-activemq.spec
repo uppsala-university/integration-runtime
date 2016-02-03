@@ -1,6 +1,6 @@
 Summary:     	ActiveMQ RPM
-Name:           apache-activemq
-Version:       	5.13.0
+Name:           __PKG
+Version:       	__VERSION
 Release:        0
 License:        none
 Source0:       	%{name}-%{version}-bin.tar.gz
