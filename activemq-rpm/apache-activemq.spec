@@ -3,13 +3,12 @@ Name:           apache-activemq
 Version:       	5.13.0
 Release:        0
 License:        none
-Source0:       	%{name}-%{version}-bin.zip
-BuildArch:      noarch
+Source0:       	%{name}-%{version}-bin.tar.gz
 BuildRoot:      %{_tmppath}/%{name}-build
 Group:          System/Integration
 Vendor:         Uppsala university
 
-BuildRequires: zip
+BuildRequires: tar
 
 %define activemq_home /opt
 %define activemq_group activemq

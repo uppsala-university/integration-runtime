@@ -2,7 +2,7 @@
 
 PKG="apache-activemq"
 VERSION="5.13.0"
-TARBALL="$PKG-$VERSION-bin.zip"
+TARBALL="$PKG-$VERSION-bin.tar.gz"
 
 echo "Building RPM for $PKG-$VERSION"
 
@@ -22,7 +22,7 @@ cp -v $TARBALL ~/rpmbuild/SOURCES/
 rpmbuild -bb ~/rpmbuild/SPECS/apache-activemq.spec
 if [ $? -eq 0 ]
 then
-        cp -v /root/rpmbuild/RPMS/noarch/apache-activemq-*.rpm .
+        cp -v /root/rpmbuild/RPMS/x86_64/apache-activemq-*.rpm .
 	rm -f *.bak
 fi
 
