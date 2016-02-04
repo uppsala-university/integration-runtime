@@ -18,9 +18,12 @@ then
 	curl http://www.eu.apache.org/dist/karaf/$VERSION/$TARBALL > $TARBALL
 fi
 
+echo -n "Patching specification..."
 sed -i.bak -e s/__PKG/${PKG}/g -e s/__VERSION/${VERSION}/g apache-karaf.spec
+echo " Done."
 
 yum -y install rpmdevtools && rpmdev-setuptree
+yum -y install zip
 cp -v apache-karaf.spec ~/rpmbuild/SPECS/
 
 unzip -q $TARBALL
@@ -48,6 +51,13 @@ rpmbuild -bb ~/rpmbuild/SPECS/apache-karaf.spec
 if [ $? -eq 0 ]
 then
         cp -v /root/rpmbuild/RPMS/x86_64/apache-karaf-*.rpm .
-	rm -f *.bak
 fi
 
+echo -n "Cleaning up..."
+if [ apache-karaf.spec.bak ]; then
+        rm apache-karaf.spec
+        mv apache-karaf.spec.bak apache-karaf.spec
+        echo " Done."
+else
+        echo " Nothing to do."
+fi
