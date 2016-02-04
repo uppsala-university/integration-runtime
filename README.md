@@ -54,7 +54,21 @@ Som grafiskt adminiistrationsgränssnitt rekommenderas Hawtio. Hawtio installera
 
 Gå sedan till <http://localhost:8181/hawtio> oc använd smx/smx för inloggning.
 
-TODO: Lägg till inforamtion om hur man konfigurerar Hawtio för att även monitorera ActiveMQ.
+Eftersom att Hawtio körs direkt i OSGi-kontainern kommer Hawtio att per automatik kunna monitorera allt som går att monitoreras i OSGi-kontainern. ActiveMQ körs inte i samma miljö utan exekveras som en enskild process per <b>broker</b>.
+
+För att ansluta till respektive broker välj menyalternativet <b>[ Container | Connect ]</b> i Hawtio. I <b>Connection Settings</b> anges:
+
+| Setting       | Value         |
+| ------------- |:-------------:|
+| Name          | integration   |
+| Scheme        | http          |
+| Port          | 8161          |
+| User name     | *****         |
+| Password      | *****         |
+
+Om inte användarnamn och lösenord ändrats i installationen för ActiveMQ är de `admin/admin`.
+
+I installationen av ActiveMQ installeras två brokers, en för alla integrationsteknikens meddelanden samt en broker för att skriva de meddelanden som av någon anledning inte kan skickas (dead letters). Dead letters kan inte hanteras i samma broker eftersom att de inte ska transaktionshanteras tillsammans (i en Apache Camel route kan man inte ha två separata parallela handtag till samma broker). Broker två namnges `integration-dlq` och publicerar sitt REST-baserade adminstrationsgränssnitt (Jolokia) på port 8162. 
 
 Installera klientcertifikat för nya Ladok
 =========================================
