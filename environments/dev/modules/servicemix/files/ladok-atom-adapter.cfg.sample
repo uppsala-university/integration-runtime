@@ -1,0 +1,4 @@
+atom-adapter.certificateFile=CHANGEME
+atom-adapter.certificatePwd=CHANGEME
+atom-adapter.useCert=true
+atom-adapter.lastFeed=https://api.mit.ladok.se/uppfoljning/feed/recent
