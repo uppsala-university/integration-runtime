@@ -31,18 +31,18 @@ APP_NAME="karaf"
 APP_LONG_NAME="karaf"
 
 # Wrapper
-WRAPPER_CMD="/opt/apache-karaf-4.0.4/bin/${APP_NAME}-wrapper"
-WRAPPER_CONF="/opt/apache-karaf-4.0.4/etc/${APP_NAME}-wrapper.conf"
+WRAPPER_CMD="/opt/apache-karaf/bin/${APP_NAME}-wrapper"
+WRAPPER_CONF="/opt/apache-karaf/etc/${APP_NAME}-wrapper.conf"
 
 # Priority at which to run the wrapper.  See "man nice" for valid priorities.
 #  nice is only used if a priority is specified.
 PRIORITY=
 
 # Location of the data folder.
-DATADIR="/opt/apache-karaf-4.0.4/data"
+DATADIR="/opt/apache-karaf/data"
 
 # Location of the pid file.
-PIDDIR="/opt/apache-karaf-4.0.4/data"
+PIDDIR="/opt/apache-karaf/data"
 
 # If uncommented, causes the Wrapper to be shutdown using an anchor file.
 #  When launched with the 'start' command, it will also ignore all INT and
@@ -57,7 +57,7 @@ PIDDIR="/opt/apache-karaf-4.0.4/data"
 # NOTE - This will set the user which is used to run the Wrapper as well as
 #  the JVM and is not useful in situations where a privileged resource or
 #  port needs to be allocated prior to the user being changed.
-#RUN_AS_USER=
+RUN_AS_USER=karaf
 
 # The following two lines are used by the chkconfig command. Change as is
 #  appropriate for your application.  They should remain commented.
