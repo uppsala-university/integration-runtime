@@ -29,7 +29,7 @@ och göra en länk till den enligt mönstret
 	
 där `$VERSION` översätts till den version av Apache Karaf som har angivits i `build-rpm.sh`. Samtidigt kommer det att skapas en länk för att starta Karaf som en tjänst enligt mönstret:
 
-	/etc/init.d/apache-karaf -> /opt/apache-karaf-$VERSION/bin/karaf-service
+	/etc/init.d/apache-karaf -> /opt/apache-karaf/bin/karaf-service
 
 Modifiering av källan
 =====================
