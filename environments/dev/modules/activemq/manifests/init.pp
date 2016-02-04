@@ -42,6 +42,16 @@ class activemq {
                     File['/var/lib/activemq']]
   }
 
+  # 1st broker as running system service
+    service { 'activemq-instance-integration':
+  		enable		=> true,
+  		ensure 		=> running,
+  		require		=> [Package["apache-activemq-$version-0.x86_64"],
+                    File['/etc/init.d/activemq-instance-integration'],
+                    File['/var/lib/activemq/activemq-instance-integration'],
+                    File['/etc/default/activemq-instance-integration']]
+  	}
+
   # service symlink for 1st broker: integration
   file { '/etc/init.d/activemq-instance-integration':
     ensure    => 'link',
@@ -76,16 +86,14 @@ class activemq {
     require   => Package["apache-activemq-$version-0.x86_64"]
   }
 
-  # We do not use the default broker service.
-  #service { 'apache-activemq':
-	#	enable		=> true,
-	#	ensure 		=> running,
-	#	require		=> [Package["apache-activemq-$version-0.x86_64"],
-  #                File['/etc/default/activemq']]
-	#}
+  # 2nd broker as running system service
+  service { 'activemq-instance-integration-dlq':
+  		enable		=> true,
+  		ensure 		=> running,
+  		require		=> [Package["apache-activemq-$version-0.x86_64"],
+                    File['/etc/init.d/activemq-instance-integration-dlq'],
+                    File['/var/lib/activemq/activemq-instance-integration-dlq'],
+                    File['/etc/default/activemq-instance-integration-dlq']]
+  }
 
-  # From http://activemq.apache.org/unix-shell-script.html#UnixShellScript-Version5.11.0andhigher
-  #
-  # Hint: If you are using multiple instances you can only add the main instance to the automatic
-  # system start using ("update-rc.d" or "chkconfig") because the LSB Header "Provides" needs to
-  # be uniq.
+}
