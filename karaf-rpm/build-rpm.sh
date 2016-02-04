@@ -3,8 +3,11 @@
 PKG="apache-karaf"
 VERSION="4.0.4"
 TARBALL="$PKG-$VERSION.zip"
+ARCHITECTURE="x86_64"
+RESOURCE="http://www.eu.apache.org/dist/karaf"
+SPEC="$PKG.spec"
 
-echo "Building RPM for $PKG-$VERSION"
+echo "Building RPM for $PKG-$VERSION ($ARCHITECTURE)"
 
 # Remove downloaded tar since we've modify it to contain service wrapper
 if [ $TARBALL ]
@@ -15,16 +18,15 @@ fi
 # Always start with a newly downloaded tarball
 if [ ! -f $TARBALL ]
 then
-	curl http://www.eu.apache.org/dist/karaf/$VERSION/$TARBALL > $TARBALL
+	curl $RESOURCE/$VERSION/$TARBALL > $TARBALL
 fi
 
 echo -n "Patching specification..."
-sed -i.bak -e s/__PKG/${PKG}/g -e s/__VERSION/${VERSION}/g apache-karaf.spec
+sed -i.bak -e s/__PKG/${PKG}/g -e s/__VERSION/${VERSION}/g $SPEC
 echo " Done."
 
-yum -y install rpmdevtools && rpmdev-setuptree
-yum -y install zip
-cp -v apache-karaf.spec ~/rpmbuild/SPECS/
+yum -y install rpmdevtools zip && rpmdev-setuptree
+cp -v $SPEC ~/rpmbuild/SPECS/
 
 unzip -q $TARBALL
 
@@ -47,16 +49,16 @@ zip -rq $TARBALL $PKG-$VERSION
 rm -rf $PKG-$VERSION
 
 cp -v $TARBALL ~/rpmbuild/SOURCES/
-rpmbuild -bb ~/rpmbuild/SPECS/apache-karaf.spec
+rpmbuild -bb ~/rpmbuild/SPECS/$SPEC
 if [ $? -eq 0 ]
 then
-        cp -v /root/rpmbuild/RPMS/x86_64/apache-karaf-*.rpm .
+        cp -v /root/rpmbuild/RPMS/$ARCHITECTURE/$PKG-*.rpm .
 fi
 
 echo -n "Cleaning up..."
-if [ apache-karaf.spec.bak ]; then
-        rm apache-karaf.spec
-        mv apache-karaf.spec.bak apache-karaf.spec
+if [ $SPEC.bak ]; then
+        rm $SPEC
+        mv $SPEC.bak $SPEC
         echo " Done."
 else
         echo " Nothing to do."
