@@ -70,17 +70,21 @@ Om inte användarnamn och lösenord ändrats i installationen för ActiveMQ är 
 
 I installationen av ActiveMQ installeras två brokers, en för alla integrationsteknikens meddelanden samt en broker för att skriva de meddelanden som av någon anledning inte kan skickas (dead letters). Dead letters kan inte hanteras i samma broker eftersom att de inte ska transaktionshanteras tillsammans (i en Apache Camel route kan man inte ha två separata parallela handtag till samma broker). Broker två namnges `integration-dlq` och publicerar sitt REST-baserade adminstrationsgränssnitt (Jolokia) på port 8162. 
 
-Installera klientcertifikat för nya Ladok
-=========================================
-Klienten som används för att hämta händelser från Ladok's ATOM-gränssnitt finns i biblioteket <https://github.com/uppsala-university/ladok>.
+Installera certifikat för nya Ladok
+===================================
+Klienterna som används för att hämta händelser från Ladok's ATOM-gränssnitt och för att komma åt nya Ladok's REST-gränssnitt finns i biblioteket <https://github.com/uppsala-university/ladok>.
 
-Kopiera klientcertifikat till nya Ladok någonstans i filsystemet på den provisionerade maskinen. Certifikatet ska vara på PKCS 12-format.
+Klientcertifikat till nya Ladok måste läggas in någonstans i filsystemet på den provisionerade maskinen. Certifikatet ska vara på PKCS 12-format.
 
 I `ladok3atom-client/src/main/resources` finns en exempelfil för fordrade egenskaper. Använd den genom att döpa om den
 
     mv atomclient.properties.sample atomclient.properties
 
-Redigera sedan filen `ladok3atom-client/src/main/resources/atomclient.properties` för att innehålla rätt namn och plasts på certifikatfil och lösenord.
+Redigera sedan filen `ladok3atom-client/src/main/resources/atomclient.properties` för att innehålla rätt namn och plats på certifikatfil och lösenord.
+
+För REST-klienten krävs motsvarande konfiguration (`ladok3rest-client/src/main/resources/restclient.properties`). Till REST-klienten behövs även en nyckelring med certifikat för att verifiera den krypterade kommunikationen med nya Ladok. Det går bra att använda sig av den nyckelring som installeras tillsammans med Java (filen cacerts som har lösenordet *changeit* som standardlösenord).
+
+För att slippa lägga in certifikat i den provisionerade maskinen varje gång den rensas rekommenderas att lägga filerna i den katalog som har maskinkonfigurationen (`integration-runtime`) som sedan per automatik monsteras på `/vagrant` i gästsystemet. Referera sedan till `/vagrant/certifikatsfil` i konfigurationsfilen.
 
 Driftsätt händelsehanteraren i den OSGi-miljö
 =============================================
