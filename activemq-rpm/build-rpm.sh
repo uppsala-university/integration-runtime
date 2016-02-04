@@ -9,8 +9,8 @@ SPEC="$PKG.spec"
 
 echo "Building RPM for $PKG-$VERSION"
 
-# Remove downloaded tar since we've modify it to contain service wrapper
-if [ $TARBALL ]
+# Start with fresh source, remove previous if exists.
+if [ -f $TARBALL ]
 then
         rm $TARBALL
 fi
