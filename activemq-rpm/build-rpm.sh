@@ -6,6 +6,12 @@ TARBALL="$PKG-$VERSION-bin.tar.gz"
 
 echo "Building RPM for $PKG-$VERSION"
 
+# Remove downloaded tar since we've modify it to contain service wrapper
+if [ $TARBALL ]
+then
+        rm $TARBALL
+fi
+
 if [ ! -f $TARBALL ]
 then
 	curl http://apache.mirrors.spacedump.net/activemq/$VERSION/$TARBALL > $TARBALL
