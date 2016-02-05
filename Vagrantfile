@@ -1,8 +1,9 @@
-Vagrant.configure("2") do |config|      
+Vagrant.configure("2") do |config|
 
   config.vm.hostname = "centos.dev.uu.se"
 
-  config.vm.synced_folder "~/.m2", "/vagrant/m2", create: true #, owner: "smx"
+  config.vm.synced_folder "~/.m2", "/vagrant/m2", create: true, mount_options: ["uid=497,gid=497"]
+  # ["dmode=777,fmode=666"]
 
   config.vm.provision :puppet do |puppet|
      puppet.environment_path = "environments"
