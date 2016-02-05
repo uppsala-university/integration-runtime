@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<features xmlns="http://karaf.apache.org/xmlns/features/v1.3.0" name="integration-platform">
+
+  <repository>mvn:io.hawt/hawtio-karaf/2.0.0/xml/features</repository>
+
+  <feature description="Integration platform base" version="1.0" name="integration-platform-base" install="auto">
+    <feature>hawtio</feature>
+  </feature>
+
+</features>
