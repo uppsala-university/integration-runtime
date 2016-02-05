@@ -1,23 +1,25 @@
 Utvecklingsmiljö för integrationer
 ==================================
-TODO: Kort beskrivning av integrationskonceptet och miljön.
+Det här är en virtuell utvecklingsmiljö för att bygga integrationer baserat på olika komponenter från Apache Foundation. I miljön finns köhanterare, dmbs, och en OSGi-miljö för att exekvera de integrationspunkter som utvecklas - i första hand flöden implementerade med Apache Camel.
 
-Starta miljö
-------------
-Miljön bygger på att Vagrant och Virtual Box finns instalerat på värdsystemet. Checka ut maskinen med
+Starta miljön
+-------------
+Miljön bygger på att Vagrant och Virtual Box finns installerat på värdsystemet. Den aktuella versionen av Virtual Box drivrutiner i gästsystemet är 5.0.14, för att undvika konflikter mellan värd- och gästsystem bör samma version användas i värdsystemet.
+
+Ladda ner maskinen via antingen den länkade zip-filen eller om `git` finns installerat i värdsystemet checka ut maskinen med
 
 	git clone https://github.com/uppsala-university/integration-runtime/
 
-I den utcheckade katalogen startas miljön med
+I den nedladdade katalogen startas miljön med
 
     vagrant up
 
-Efter att masknien startats och provisionerats är följande komponenter installerade
+Efter att maskinen startats och provisionerats är följande komponenter installerade
 
 * Apache Karaf
 * Apache ActiveMQ
 * MariaDB
-* Lokal httpd (för att simulera Ladok Feeds via statiska filer)
+* Webbserver för att simulera nya Ladok's händelseflöde via statiska filer (Atom feeds)
 
 Tjänsterna
 ----------
