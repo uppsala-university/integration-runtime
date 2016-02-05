@@ -45,5 +45,5 @@ In each broker home directory a more detailed configuration resists (`conf`). In
 
 * Name: **integration-dlq**
 * Transport Connector: **OpenWire** 
-* Port: **61617**
+* Port: **61618**
 * Jolokia port: **8162** 
