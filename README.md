@@ -1,13 +1,18 @@
-Du behöver Vagrant och Virtual Box på din dator.
+Utvecklingsmiljö för integrationer
+==================================
+TODO: Kort beskrivning av integrationskonceptet och miljön.
 
-Starta miljön
-=============
+Starta miljö
+------------
+Miljön bygger på att Vagrant och Virtual Box finns instalerat på värdsystemet. Checka ut maskinen med
 
-Starta maskinen med vagrant
+	git clone https://github.com/uppsala-university/integration-runtime/
+
+I den utcheckade katalogen startas miljön med
 
     vagrant up
 
-Efter en stunds tuggande bör maskinen komma igång med följande komponenter installerade
+Efter att masknien startats och provisionerats är följande komponenter installerade
 
 * Apache Karaf
 * Apache ActiveMQ
@@ -24,7 +29,8 @@ Tjänsterna ska startas per automatik. Logga in i maskinens skal med
 Kontrollera att tjänsterna är startade med
 
     sudo service apache-karaf status
-    sudo service apache-activemq status
+    sudo service activemq-instance-integration status
+    sudo service activemq-instance-integration-dlq status
     sudo service mysql status
 
 Monitorera genom att hålla koll på /opt/apache-karaf/data/log/karaf.log.
