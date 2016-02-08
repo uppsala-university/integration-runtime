@@ -1,6 +1,6 @@
 class karaf {
 
-	$version = "4.0.1"
+	$version = "4.0.4"
 
 	package { "apache-karaf-$version-0.x86_64":
     ensure    => installed,
