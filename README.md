@@ -60,6 +60,8 @@ För att ansluta till *respektive broker* välj menyalternativet **[ Container |
 | ------------- |:-------------:|
 | Name          | integration   |
 | Scheme        | http          |
+| Host          | localhost     |
+| Path          | api/jolokia   |
 | Port          | 8161          |
 | User name     | *****         |
 | Password      | *****         |
