@@ -32,16 +32,7 @@ cp -v $SPEC ~/rpmbuild/SPECS/
 
 unzip -q $TARBALL
 
-# Custom files to include
-# These should be updated for each release
-#cp -v karaf-wrapper $PKG-$VERSION/bin
-#cp -v karaf-service $PKG-$VERSION/bin
-#cp -v karaf.service $PKG-$VERSION/bin
-#cp -v karaf-wrapper.conf $PKG-$VERSION/etc
-#mkdir -p $PKG-$VERSION/lib/wrapper
-#cp -v libwrapper.so $PKG-$VERSION/lib/wrapper
-#cp -v karaf-wrapper.jar $PKG-$VERSION/lib/wrapper
-#cp -v karaf-wrapper-main.jar $PKG-$VERSION/lib/wrapper
+# Patch downloaded package with service wrapper
 cp -R $MAJOR_MINOR.x/* $PKG-$VERSION/
 
 # Remove original
