@@ -1,7 +1,9 @@
 #!/bin/bash
 
 PKG="apache-karaf"
-VERSION="4.0.4"
+MAJOR_MINOR="3.0"
+PATCH="5"
+VERSION="$MAJOR_MINOR.$PATCH"
 TARBALL="$PKG-$VERSION.zip"
 ARCHITECTURE="x86_64"
 RESOURCE="http://www.eu.apache.org/dist/karaf"
@@ -32,14 +34,15 @@ unzip -q $TARBALL
 
 # Custom files to include
 # These should be updated for each release
-cp -v karaf-wrapper $PKG-$VERSION/bin
-cp -v karaf-service $PKG-$VERSION/bin
-cp -v karaf.service $PKG-$VERSION/bin
-cp -v karaf-wrapper.conf $PKG-$VERSION/etc
-mkdir -p $PKG-$VERSION/lib/wrapper
-cp -v libwrapper.so $PKG-$VERSION/lib/wrapper
-cp -v karaf-wrapper.jar $PKG-$VERSION/lib/wrapper
-cp -v karaf-wrapper-main.jar $PKG-$VERSION/lib/wrapper
+#cp -v karaf-wrapper $PKG-$VERSION/bin
+#cp -v karaf-service $PKG-$VERSION/bin
+#cp -v karaf.service $PKG-$VERSION/bin
+#cp -v karaf-wrapper.conf $PKG-$VERSION/etc
+#mkdir -p $PKG-$VERSION/lib/wrapper
+#cp -v libwrapper.so $PKG-$VERSION/lib/wrapper
+#cp -v karaf-wrapper.jar $PKG-$VERSION/lib/wrapper
+#cp -v karaf-wrapper-main.jar $PKG-$VERSION/lib/wrapper
+cp -R $MAJOR_MINOR.x/* $PKG-$VERSION/
 
 # Remove original
 rm $TARBALL
@@ -52,14 +55,17 @@ cp -v $TARBALL ~/rpmbuild/SOURCES/
 rpmbuild -bb ~/rpmbuild/SPECS/$SPEC
 if [ $? -eq 0 ]
 then
-        cp -v /root/rpmbuild/RPMS/$ARCHITECTURE/$PKG-*.rpm .
+        cp -v /root/rpmbuild/RPMS/$ARCHITECTURE/$PKG-$VERSION-*.rpm .
 fi
 
 echo -n "Cleaning up..."
-if [ $SPEC.bak ]; then
+if [ -f $SPEC.bak ]; then
         rm $SPEC
         mv $SPEC.bak $SPEC
         echo " Done."
 else
         echo " Nothing to do."
+fi
+if [ -f $PKG-$VERSION.zip ]; then
+	rm $PKG-$VERSION.zip
 fi
