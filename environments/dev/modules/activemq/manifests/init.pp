@@ -13,6 +13,11 @@ class activemq {
 		mode			=> "0644"
 	}
 
+  # don't start default broker
+  service { 'apache-activemq':
+    enable    => false,
+  }
+
   # data dir for configured brokers
   file { "/var/lib/activemq":
     ensure    => directory,
@@ -43,14 +48,14 @@ class activemq {
   }
 
   # 1st broker as running system service
-    service { 'activemq-instance-integration':
-  		enable		=> true,
-  		ensure 		=> running,
-  		require		=> [Package["apache-activemq-$version-0.x86_64"],
+  service { 'activemq-instance-integration':
+    enable		=> true,
+  	ensure 		=> running,
+  	require		=> [Package["apache-activemq-$version-0.x86_64"],
                     File['/etc/init.d/activemq-instance-integration'],
                     File['/var/lib/activemq/activemq-instance-integration'],
                     File['/etc/default/activemq-instance-integration']]
-  	}
+  }
 
   # service symlink for 1st broker: integration
   file { '/etc/init.d/activemq-instance-integration':
