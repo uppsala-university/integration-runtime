@@ -22,11 +22,11 @@ Efter att maskinen startats och provisionerats är följande komponenter install
 * Testmiljö: *Webbserver för att simulera nya Ladok's händelseflöde via statiska filer (Atom feeds)*
 
 ## Tjänsterna
-Tjänsterna ska startas per automatik. Logga in i maskinens skal med
+Tjänsterna startas per automatik. Logga in i maskinens skal med
 
     vagrant ssh
 
-Kontrollera att tjänsterna är startade med
+och kontrollera att tjänsterna är startade med
 
     sudo service apache-karaf status
     sudo service activemq-instance-integration status
@@ -92,4 +92,4 @@ Checka ut projekten `common-integration`, `ladok` och `ladok-integration`:
     git clone git@github.com/uppsala-university/ladok-integration
     git clone git@github.com/uppsala-university/common-integration    
 
-Driftsättning i OSGi-miljön görs genom provisioneringsmetoden "features" (Apache Karaf). I projektet "ladok-integration" finns modulen "ladok-integration-packaging-karaf" som innehåller vidare information om hur man enklast driftsätter.
+Driftsättning i OSGi-miljön görs genom provisioneringsmetoden "features" (Apache Karaf). I projektet "ladok-integration" finns modulen "ladok-integration-packaging-karaf" som innehåller vidare information om hur driftsättning enklast görs.
