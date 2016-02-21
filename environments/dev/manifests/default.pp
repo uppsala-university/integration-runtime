@@ -13,7 +13,7 @@ node "centos.dev.uu.se" {
 
 	mariadb::database{'logdb':
 		ensure   => 'importdb',
-		sql      => '/vagrant/environments/dev/modules/mariadb/sql/init.sql',
+		sql      => '/vagrant/environments/modules/mariadb/sql/init.sql',
 		adminPwd => 'magento'
 	} ->
 
