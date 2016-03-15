@@ -10,3 +10,6 @@ release.properties
 *.p12
 smx/
 .DS_Store
+se.sunet.ati.integration.common.cfg
+se.sunet.ati.integration.ladok.cfg
+se.uu.its.integration.cfg
