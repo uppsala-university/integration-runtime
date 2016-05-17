@@ -1,7 +1,7 @@
 #!/bin/bash
 
 PKG="apache-karaf"
-MAJOR_MINOR="3.0"
+MAJOR_MINOR="4.0"
 PATCH="5"
 VERSION="$MAJOR_MINOR.$PATCH"
 TARBALL="$PKG-$VERSION.zip"
