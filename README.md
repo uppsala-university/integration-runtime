@@ -1,14 +1,11 @@
-Utvecklingsmiljö för integrationer
-----------------------------------
+# Utvecklingsmiljö för integrationer
 
 Det här är en virtuell utvecklingsmiljö för att bygga integrationer baserat på olika komponenter från Apache Foundation. I miljön finns köhanterare, DBMS, och en OSGi-miljö för att exekvera de integrationspunkter som utvecklas - primärt integrationsflöden implementerade med Apache Camel. Komponenterna är sammansatta för att stödja implementation av integrationspunkter baserade på tankar och tekniker beskrivna i [Enterprise Integraton Patterns](http://www.enterpriseintegrationpatterns.com).
 
 Miljön är framtagen som ett led i det förändringsarbete svenska lärosäten genomgår genom att en ny version av det centrala systemet för studieadministration, [Ladok](http://www.ladok.se/ladok/nya-ladok/integrationer/), är under framtagande.
 
 
-Starta miljön
--------------
-
+## Starta miljön
 Miljön bygger på att Vagrant och Virtual Box finns installerat på värdsystemet. Den aktuella versionen av Virtual Box drivrutiner i gästsystemet är 5.0.14, för att undvika konflikter mellan värd- och gästsystem bör samma version användas i värdsystemet.
 
 Ladda ner maskinen via antingen den länkade zip-filen eller om `git` finns installerat i värdsystemet checka ut maskinen med
@@ -27,9 +24,7 @@ Efter att maskinen startats och provisionerats är följande komponenter install
 * Testmiljö: *Webbserver för att simulera nya Ladok's händelseflöde via statiska filer (Atom feeds)*
 
 
-Tjänsterna
-----------
-
+## Tjänsterna
 Tjänsterna startas per automatik. Logga in i maskinens skal med
 
     vagrant ssh
@@ -44,9 +39,7 @@ och kontrollera att tjänsterna är startade med
 Monitorera genom att hålla koll på /opt/apache-karaf/data/log/karaf.log.
 
 
-Konsoll för OSGi-miljö
-----------------------
-
+## Konsoll för OSGi-miljö
 Kör ssh mot OSGi-milöjn. Lösenordet är "karaf"
 
     ssh -p 8101 karaf@localhost
@@ -60,9 +53,7 @@ Ett exempel kan ges att det går att följa loggen med:
     log:tail
 
 
-Grafisk administrationsmiljö
-----------------------------
-
+## Grafisk administrationsmiljö
 Som grafiskt administrationsgränssnitt installeras Hawtio tillsammans med övrig miljö i provisioneringen. Öppna <http://localhost:8181/hawtio> och använd karaf/karaf för inloggning.
 
 Eftersom att Hawtio körs direkt i OSGi-kontainern kommer Hawtio att per automatik att kunna monitorera allt som går att monitoreras i OSGi-kontainern. ActiveMQ körs inte i samma miljö utan exekveras som *en enskild process per broker*.
@@ -84,9 +75,7 @@ Om inte användarnamn och lösenord ändrats i installationen för ActiveMQ är 
 I installationen av ActiveMQ installeras två brokers, en för alla integrationsteknikens meddelanden samt en broker för att skriva de meddelanden som av någon anledning inte kan skickas (dead letters). Dead letters kan inte hanteras i samma broker eftersom att de inte ska transaktionshanteras tillsammans (i en Apache Camel route kan man inte ha två separata parallela handtag till samma broker). Broker två namnges `integration-dlq` och publicerar sitt REST-baserade adminstrationsgränssnitt (Jolokia) på port 8162. 
 
 
-Installera certifikat för nya Ladok
------------------------------------
-
+## Installera certifikat för nya Ladok
 För installation av certifikat i en OSGi-miljö, se "Konfiguration i OSGi-miljö (Karaf)".
 
 Klienterna som används för att hämta händelser från Ladok's ATOM-gränssnitt och för att komma åt nya Ladok's REST-gränssnitt finns i biblioteket <https://github.com/uppsala-university/ladok>.
@@ -104,9 +93,7 @@ För REST-klienten krävs motsvarande konfiguration (`ladok3rest-client/src/main
 För att slippa lägga in certifikat i den provisionerade maskinen varje gång den rensas rekommenderas att lägga filerna i den katalog som har maskinkonfigurationen (`integration-runtime`) som sedan per automatik monsteras på `/vagrant` i gästsystemet. Referera sedan till `/vagrant/certifikatsfil` i konfigurationsfilen.
 
 
-Driftsätt händelsehanteraren i OSGi-miljö
------------------------------------------
-
+## Driftsätt händelsehanteraren i OSGi-miljö
 Checka ut projekten `ladok`, `ladok-integration`, `common-integration` och eventuellt `uu-integration`:
 
     git clone git@github.com/uppsala-university/ladok
@@ -119,9 +106,7 @@ I projektet "ladok-integration" finns modulen "ladok-integration-packaging-karaf
 Motsvarande beskrivning för uu-integration finns i uu-integration/uu-integration-packaging-karaf.
 
 
-Konfiguration i OSGi-miljö (Karaf)
-----------------------------------
-
+## Konfiguration i OSGi-miljö (Karaf)
 Apache Karaf läser in property-filer i $KARAF_HOME/etc/, så för att konfigurera händelsekonsumtionssystemet och dess hjälpbibliotek,
 kopiera filerna
 
